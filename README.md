@@ -1,6 +1,12 @@
 # roundstamp
 Round Stamp It!
 
+### Pre requisites
+- bash
+- python3
+- python3-venv
+- python3-pip
+
 
 ### Stamp and Overwrite
 - start with a zip file
@@ -17,4 +23,11 @@ Round Stamp It!
 - stat -c %G
 - mkdir
 - cp
-- zip
+- unzip
+- python3
+
+### Python Libraries used
+- os
+- pymupdf
+    - fitz
+

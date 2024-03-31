@@ -45,11 +45,22 @@ fi
 # if cp -v "${unstamped_zipfile}" "${unstamped_folder}"
 mkdir -vp "${unstamped_folder}"
 mkdir -vp "${stamped_folder}"
+mkdir -vp "${stamps_folder}"
 
-unzip "${unstamped_zipfile}" -d "${unstamped_folder}"
+cp -v "${rstamp_file}" "${stamps_folder}"
 
+unzip -o "${unstamped_zipfile}" -d "${unstamped_folder}"
 
+echo "${p} Python Version is: $(python3 --version)"
 
+python3 -m venv "${python_env_name}"
+source "${python_env_name}/bin/activate"
+
+pip install --upgrade pymupdf
+
+python3 stamp.py
+
+deactivate
 
     
 

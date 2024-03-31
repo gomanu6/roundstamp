@@ -49,7 +49,8 @@ mkdir -vp "${stamps_folder}"
 
 cp -v "${rstamp_file}" "${stamps_folder}"
 
-unzip -o "${unstamped_zipfile}" -d "${unstamped_folder}"
+unzip -qo "${unstamped_zipfile}" -d "${unstamped_folder}"
+# tar -zxf "${unstamped_zipfile}" --strip-components=1 -C "${unstamped_folder}"
 
 echo "${p} Python Version is: $(python3 --version)"
 
@@ -58,7 +59,7 @@ source "${python_env_name}/bin/activate"
 
 pip install --upgrade pymupdf
 
-python3 stamp.py
+python3 stamp.py "${stamps_folder}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_files_folder_name}"
 
 deactivate
 

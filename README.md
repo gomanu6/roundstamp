@@ -6,6 +6,7 @@ Round Stamp It!
 - python3
 - python3-venv
 - python3-pip
+- [virtualenvwrapper](https://pypi.org/project/virtualenvwrapper/)
 
 
 ### Stamp and Overwrite
@@ -31,3 +32,5 @@ Round Stamp It!
 - pymupdf
     - fitz
 
+### References
+- [Virtual Environments](https://ioflood.com/blog/python-activate-venv/)

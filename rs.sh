@@ -13,6 +13,10 @@ todays_date=$(date +%F)
 
 . ./rs.config
 
+if [ "$#" -le 1 ]; then
+    echo "${p} File not specified"
+    exit 1
+fi
 
 echo "${p} Checking if file exists"
 if [ -f "$1" ]; then

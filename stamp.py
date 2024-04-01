@@ -114,8 +114,7 @@ def get_file_info(file):
 def get_files_info(files_list):
     for file in files_list:
         src = file[0]
-
-        get_file_info(src)
+        pprint(get_file_info(src))
 
 
 
@@ -124,6 +123,8 @@ def get_files_info(files_list):
 b= get_files_to_stamp(unstamped_files)
 
 create_final_paths(b)
+
+get_files_info(b)
 
 stamp_files(b, stamp_file)
 

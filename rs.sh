@@ -1,6 +1,6 @@
 #!/bin/bash
 
-unstamped_zipfile=$1
+# unstamped_zipfile=$1
 
 n=$0
 p="[${n}]: "
@@ -10,15 +10,21 @@ o_group=""
 
 todays_date=$(date +%F)
 
-. ./rs.config
+. ./rs.test.config
 
-if [ "$#" -le 0 ]; then
-    echo "${p} File not specified"
-    exit 1
-fi
+unstamped_zipfile="${annexure_file}"
+
+echo "${p} Deleting Old Data Folder"
+rm -rf "${data_folder}"
+
+
+# if [ "$#" -le 0 ]; then
+#     echo "${p} File not specified"
+#     exit 1
+# fi
 
 echo "${p} Checking if file exists"
-if [ -f "$1" ]; then
+if [ -f "${unstamped_zipfile}" ]; then
     
     o_user=$(stat -c %U ${unstamped_zipfile})
     o_group=$(stat -c %G ${unstamped_zipfile})
@@ -65,6 +71,6 @@ python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${un
 
 deactivate
 
-mkdir -vp "${final_path}"
-cp -rv "${stamped_folder}" "${final_path}"
+# mkdir -vp "${final_path}"
+# cp -rv "${stamped_folder}" "${final_path}"
 

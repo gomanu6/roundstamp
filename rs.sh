@@ -59,10 +59,12 @@ source "${python_env_name}/bin/activate"
 
 pip install --upgrade pymupdf
 
-python3 stamp.py "${stamps_folder}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_files_folder_name}"
+stamp_file="${stamps_folder}/${stamp_filename}"
+
+python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_files_folder_name}"
 
 deactivate
 
     
-
+cp -rv "${stamped_folder}" "${final_path}"
 

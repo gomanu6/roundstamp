@@ -2,20 +2,30 @@
 
 import os
 import sys
+from pathlib import Path
 import fitz
+from pprint import pprint
 
 
 print("Hello .. Welcome to the Python Stamp Utility")
 print("The OS is: ", os.name)
-
+print()
 print(sys.argv)
 
 
-stamps_folder=sys.argv[1]
+stamp_file=sys.argv[1]
 unstamped_files=sys.argv[2]
 stamped_folder=sys.argv[3]
 zipped_filename=sys.argv[4]
 stamped_files_folder_name=sys.argv[5]
+
+
+stamp_width = 75
+stamp_height = 75
+
+distance_from_right  = 165
+distance_from_bottom = 105
+
 
 def get_final_path(path, dir):
     int_path = path.split("/")
@@ -26,9 +36,15 @@ def get_final_path(path, dir):
     return d_path
 
 
+def create_final_paths(files_list):
+    for file in files_list:
+        dst_path = file[1]
+        Path(dst_path).mkdir(parents=True, exist_ok=True)
+
+
+
 def get_files_to_stamp(dir):
     file_paths = []
-
 
     for path, directories, files in os.walk(dir):
         # print("Path: ", path, "File: ", files)
@@ -47,24 +63,54 @@ def get_files_to_stamp(dir):
     return file_paths
 
 b= get_files_to_stamp(unstamped_files)
-print(len(b))
-print(b)
+# print(len(b))
+# pprint(b)
 
 
 
- 
+# def stamp_file(src_file, dst_file, stamp):
+
+
+create_final_paths(b)
+
+
+
+def stamp_files(files_list, stamp):
+    print(len(files_list))
+
+    for file in files_list:
+        # pprint(file[0])
+        src_file = file[0]
+        dst_file = file[1]
+
+        doc = fitz.open(src_file)
+
+        if doc.is_pdf:
+            for page in doc:
+                page_width = page.rect.width
+                page_height = page.rect.height
+                    
+                # print((page_width), type(page_width))
+                # print((page_height), type(page_height))
+
+                start_width = (page_width - distance_from_right)
+                start_height = (page_height - distance_from_bottom)
+                
+                end_width = start_width + stamp_width
+                end_height = start_height + stamp_height
+
+                coords = fitz.Rect(start_width, start_height, end_width, end_height)
+                page.insert_image(coords, filename=stamp)
+
+
+
+            doc.ez_save(dst_file)
+        
+
+stamp_files(b, stamp_file)
+
 
 
 
 # doc = fitz.open("./data/uns_files/books/book-007.pdf")
 
-# print("Is this file a pdf file: ", doc.is_pdf)
-# print("Document Metadata: ", doc.metadata)
-# print("Document Name: ", doc.name)
-# print("Document No of Pages: ", doc.page_count)
-# print("Document Permissions: ", doc.permissions)
-# print("Document Page Mode: ", doc.pagemode)
-# print("Document Page Layout: ", doc.pagelayout)
-# print("Document Needs Password: ", doc.needs_pass)
-
-# doc.close()

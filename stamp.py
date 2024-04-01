@@ -7,7 +7,7 @@ import fitz
 from pprint import pprint
 
 
-print("Hello .. Welcome to the Python Stamp Utility")
+print("-----------Hello .. Welcome to the Python Stamp Utility-----------")
 print("The OS is: ", os.name)
 print()
 print(sys.argv)
@@ -18,6 +18,15 @@ unstamped_files=sys.argv[2]
 stamped_folder=sys.argv[3]
 zipped_filename=sys.argv[4]
 stamped_files_folder_name=sys.argv[5]
+path_to_replace=sys.argv[6]
+
+# print(stamp_file)
+# print(unstamped_files)
+# print(stamped_folder)
+# print(zipped_filename)
+# print(stamped_files_folder_name)
+print("Path to replace: -->> ", path_to_replace)
+print("Repalcement Path: -->> ", stamped_folder)
 
 
 stamp_width = 75
@@ -28,21 +37,28 @@ distance_from_bottom = 105
 
 
 def get_final_path(path, dir):
+    print("Getting Final Paths")
+    print("Path: ", path)
+    print("Dir: ", dir)
     int_path = path.split("/")
+    # print("int_path", int_path)
     int_path.pop(3)
     int_path[2] = dir
     d_path = "/".join(int_path)
+    print(d_path)
 
     return d_path
 
 
 def create_final_paths(files_list):
+    print("Creating Final Paths")
     for file in files_list:
         dst_path = file[1]
         Path(dst_path).mkdir(parents=True, exist_ok=True)
 
 
 def get_files_to_stamp(dir):
+    print("Getting Files to stamp")
     file_paths = []
 
     for path, directories, files in os.walk(dir):
@@ -51,6 +67,7 @@ def get_files_to_stamp(dir):
         for filename in files:
             if filename.endswith(".pdf"):
                 tmp_lst = []
+                print("Path: ", path, "File: ", filename)
                 filepath = os.path.join(path, filename)
                 tmp_lst.append(filepath)
 
@@ -64,8 +81,8 @@ def get_files_to_stamp(dir):
 
 def stamp_files(files_list, stamp):
 
-
-    print(len(files_list))
+    print("No of Files to stamp:", len(files_list))
+    print("Stamping Files...")
 
     for file in files_list:
         # pprint(file[0])
@@ -97,6 +114,7 @@ def stamp_files(files_list, stamp):
         
 
 def get_file_info(file):
+    print("Getting File Info")
     file_data = {}
 
     doc = fitz.open(file)
@@ -121,10 +139,11 @@ def get_files_info(files_list):
 
 
 b= get_files_to_stamp(unstamped_files)
+# pprint(b)
 
-create_final_paths(b)
+# create_final_paths(b)
 
-get_files_info(b)
+# get_files_info(b)
 
-stamp_files(b, stamp_file)
+# stamp_files(b, stamp_file)
 

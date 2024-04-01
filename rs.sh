@@ -65,6 +65,6 @@ python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${un
 
 deactivate
 
-    
+mkdir -vp "${final_path}"
 cp -rv "${stamped_folder}" "${final_path}"
 

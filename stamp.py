@@ -42,7 +42,6 @@ def create_final_paths(files_list):
         Path(dst_path).mkdir(parents=True, exist_ok=True)
 
 
-
 def get_files_to_stamp(dir):
     file_paths = []
 
@@ -62,20 +61,10 @@ def get_files_to_stamp(dir):
     
     return file_paths
 
-b= get_files_to_stamp(unstamped_files)
-# print(len(b))
-# pprint(b)
-
-
-
-# def stamp_file(src_file, dst_file, stamp):
-
-
-create_final_paths(b)
-
-
 
 def stamp_files(files_list, stamp):
+
+
     print(len(files_list))
 
     for file in files_list:
@@ -107,10 +96,34 @@ def stamp_files(files_list, stamp):
             doc.ez_save(dst_file)
         
 
+def get_file_info(file):
+    file_data = {}
+
+    doc = fitz.open(file)
+
+    file_data["can_save_incrementally"] = doc.can_save_incrementally()
+    file_data["toc"] = doc.get_toc()
+    file_data["layout"] = doc.layout()
+    file_data["is_pdf"] = doc.is_pdf
+    file_data["page_count"] = doc.page_count
+    file_data["page_layout"] = doc.pagelayout
+
+    return file_data
+
+
+def get_files_info(files_list):
+    for file in files_list:
+        src = file[0]
+
+        get_file_info(src)
+
+
+
+
+
+b= get_files_to_stamp(unstamped_files)
+
+create_final_paths(b)
+
 stamp_files(b, stamp_file)
-
-
-
-
-# doc = fitz.open("./data/uns_files/books/book-007.pdf")
 

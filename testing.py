@@ -19,16 +19,5 @@ path_to_replace=sys.argv[6]
 
 
 print(os.listdir(unstamped_files))
-print(os.walk(unstamped_files))
+print(list(os.walk(unstamped_files)))
 
-files = []
-for path, directories, files in os.walk(unstamped_files):
-    # print("Path: ", path, "File: ", files)
-    for filename in files:
-        if filename.endswith(".pdf"):
-            print("Path: ", path, "File: ", filename)
-            filepath = os.path.join(path, filename)
-            print("Filepath: ", filepath)
-            files.append(filepath)
-    
-pprint(files)

@@ -17,8 +17,8 @@ base_folder="${data_folder}"
 stamps_folder="${base_folder}/${stamps_folder_name}"
 stamp_file="${stamps_folder}/${stamp_filename}"
 
-unstamped_folder="${base_folder}/${unstamped_folder}"
-stamped_folder="${base_folder}/${stamped_folder}"
+unstamped_folder="${base_folder}/${unstamped_folder_name}"
+stamped_folder="${base_folder}/${stamped_folder_name}"
 
 final_folder="${base_folder}/${final_folder_name}"
 
@@ -38,9 +38,9 @@ rm -rf "${base_folder}"
 echo "${p} Checking if file exists"
 if [ -f "${unstamped_zipfile}" ]; then
     
-    o_user=$(stat -c %U ${unstamped_zipfile})
-    o_group=$(stat -c %G ${unstamped_zipfile})
-    zip_filename=$(basename ${unstamped_zipfile})
+    o_user=$(stat -c %U "${unstamped_zipfile}")
+    o_group=$(stat -c %G "${unstamped_zipfile}")
+    zip_filename=$(basename "${unstamped_zipfile}")
     y=${zip_filename%.*}
     echo "${y}"
     path_to_replace="${unstamped_folder}/${y}"
@@ -85,7 +85,7 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 testing.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
+python3 glob1.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}"
 
 
 deactivate

@@ -45,7 +45,24 @@ def list_files_recursively(directory):
     return list_of_files
 
 a = list_files_recursively(unstamped_files)
-pprint(a)
+# pprint(a)
+
+
+def make_paths(list):
+    new_lst = []
+
+    for item in list:
+        tmp_lst = []
+
+        tmp_lst.append(os.path.join(*item[0]))
+        tmp_lst.append(os.path.join(*item[1]))
+
+        new_lst.append(tmp_lst)
+    
+    return new_lst
+
+
+pprint(make_paths(a))
 
 
 # def get_final_paths(path):

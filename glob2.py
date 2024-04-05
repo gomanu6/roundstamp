@@ -26,6 +26,8 @@ print("Stanped Files Folder:   -->>", stamped_folder)
 
 import pathlib
 
+
+
 def list_files_recursively(directory):
     list_of_files = []
 
@@ -33,50 +35,70 @@ def list_files_recursively(directory):
         
         if path.is_file():
             tmp_lst = []
-            unchanged_part = list(path.parts)
-            tmp_lst.append(unchanged_part)
-
-            changed_part = list(path.parts)
-            changed_part[1] = stamped_folder_name
-            tmp_lst.append(changed_part)
+            tmp_lst.append(str(path))
+            tmp_lst.append(str(path).replace(str(unstamped_files), str(stamped_folder)))
 
             list_of_files.append(tmp_lst)
             
     return list_of_files
 
 a = list_files_recursively(unstamped_files)
+pprint(a)
+
+
+
+
+# def list_files_recursively(directory):
+#     list_of_files = []
+
+#     for path in pathlib.Path(directory).rglob('*.pdf'):
+        
+#         if path.is_file():
+#             tmp_lst = []
+#             unchanged_part = list(path.parts)
+#             tmp_lst.append(unchanged_part)
+
+#             changed_part = list(path.parts)
+#             changed_part[1] = stamped_folder_name
+#             tmp_lst.append(changed_part)
+
+#             list_of_files.append(tmp_lst)
+            
+#     return list_of_files
+
+# a = list_files_recursively(unstamped_files)
 # pprint(a)
 
 
-def make_paths(list):
-    new_lst = []
+# def make_paths(list):
+#     new_lst = []
 
-    for item in list:
-        tmp_lst = []
+#     for item in list:
+#         tmp_lst = []
 
-        tmp_lst.append(os.path.join(*item[0]))
-        tmp_lst.append(os.path.join(*item[1]))
+#         tmp_lst.append(os.path.join(*item[0]))
+#         tmp_lst.append(os.path.join(*item[1]))
 
-        new_lst.append(tmp_lst)
+#         new_lst.append(tmp_lst)
     
-    return new_lst
+#     return new_lst
 
 
-pprint(make_paths(a))
+# pprint(make_paths(a))
 
 
-def make_new_paths(list):
-    new_lst = []
+# def make_new_paths(list):
+#     new_lst = []
 
-    for item in list:
-        tmp_lst = []
+#     for item in list:
+#         tmp_lst = []
 
-        tmp_lst.append(os.path.join(*item[0]))
-        tmp_lst.append(os.path.join(*item[1]))
+#         tmp_lst.append(os.path.join(*item[0]))
+#         tmp_lst.append(os.path.join(*item[1]))
 
-        new_lst.append(tmp_lst)
+#         new_lst.append(tmp_lst)
     
-    return new_lst
+#     return new_lst
 
 
 

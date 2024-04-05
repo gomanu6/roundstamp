@@ -42,7 +42,7 @@ if [ -f "${unstamped_zipfile}" ]; then
     o_group=$(stat -c %G "${unstamped_zipfile}")
     zip_filename=$(basename "${unstamped_zipfile}")
     y=${zip_filename%.*}
-    echo "${y}"
+    echo "The Zip file is: ${y}"
     path_to_replace="${unstamped_folder}/${y}"
     echo "${p} File exists and has username as ${o_user} and group as ${o_group}"
 else
@@ -85,7 +85,7 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 glob1.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}"
+python3 glob2.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}"
 
 
 deactivate

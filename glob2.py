@@ -19,7 +19,7 @@ stamped_folder_name=sys.argv[7]
 
 # print(stamp_file)
 print("Unstamped Files Folder: -->>", unstamped_files)
-print("Stanped Files Folder:   -->>", stamped_folder)
+print("Stamped Files Folder:   -->>", stamped_folder)
 # print(zipped_filename)
 # print(stamped_files_folder_name)
 # print(path_to_replace)

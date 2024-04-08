@@ -20,20 +20,13 @@ stamp_file="${stamps_folder}/${stamp_filename}"
 unstamped_folder="${base_folder}/${unstamped_folder_name}"
 stamped_folder="${base_folder}/${stamped_folder_name}"
 
-final_folder="${base_folder}/${final_folder_name}"
+final_folder="${outside_folder}/${final_folder_name}"
 
 
 unstamped_zipfile="${annexure_file}"
 tmp_unzip_folder="${base_folder}/${tmp_unzip_folder_name}"
 
-echo "${p} Deleting Old Data Folder"
-rm -rf "${base_folder}"
 
-
-# if [ "$#" -le 0 ]; then
-#     echo "${p} File not specified"
-#     exit 1
-# fi
 
 echo "${p} Checking if file exists"
 if [ -f "${unstamped_zipfile}" ]; then
@@ -50,6 +43,23 @@ else
     echo "${p} exiting .. "
     exit 1
 fi
+
+
+
+
+
+echo "${p} Deleting Old Data Folder"
+rm -rf "${base_folder}"
+
+# echo "${p} Deleting Final Folder"
+# rm -rf "${final_folder}"
+
+# if [ "$#" -le 0 ]; then
+#     echo "${p} File not specified"
+#     exit 1
+# fi
+
+
 
 if [ -d "${base_folder}" ]; then
     echo "${p} Data folder exists. Making Stamped and Unstamped folders"
@@ -74,8 +84,8 @@ unzip -qo "${unstamped_zipfile}" -d "${unstamped_folder}"
 # tar -zxf "${unstamped_zipfile}" --strip-components=1 -C "${unstamped_folder}"
 
 # replacement_path="${stamped_folder}"
-echo "Path to replace: -->> ${path_to_replace}"
-echo "Replacement Path: --> ${stamped_folder}"
+# echo "Path to replace: -->> ${path_to_replace}"
+# echo "Replacement Path: --> ${stamped_folder}"
 
 echo "${p} Local Installed Python Version is: $(python3 --version)"
 
@@ -85,11 +95,11 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 glob2.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}"
+python3 glob2_stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}"
 
 
 deactivate
 
 # mkdir -vp "${final_folder}"
-# cp -rv "${stamped_folder}" "${final_folder}"
+# cp -r "${stamped_folder}" "${final_folder}"
 

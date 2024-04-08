@@ -112,13 +112,27 @@ def stamp_files(files_list, stamp):
             print("Finished Stamping file: -->> ", src_file)
 
 
+def get_file_pixmap(src_file, dst_file):
+    print("Getting pixmap for: --> ", src_file)
+    doc = fitz.open(src_file)
+    doc.get_page_pixmap(0)
+    doc.save(dst_file)
+
+
+def get_files_pixmap(files_list):
+    for file in files_list:
+        src = file[0]
+        dst = file[1]
+        get_file_pixmap(src, dst)
+
+
 
 a = list_files_recursively(unstamped_files)
-# create_final_paths(a)
-get_files_info(a)
+create_final_paths(a)
+# get_files_info(a)
 # stamp_files(a, stamp_file)
 
-
+get_files_pixmap(a)
 
 
 

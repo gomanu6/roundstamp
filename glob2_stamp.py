@@ -16,6 +16,8 @@ zipped_filename=sys.argv[4]
 stamped_files_folder_name=sys.argv[5]
 path_to_replace=sys.argv[6]
 stamped_folder_name=sys.argv[7]
+img_folder=sys.argv[8]
+
 
 print("Stamp File is: -->>", stamp_file)
 print("Unstamped Files Folder: -->>", unstamped_files)
@@ -114,16 +116,27 @@ def stamp_files(files_list, stamp):
 
 def get_file_pixmap(src_file, dst_file):
     print("Getting pixmap for: --> ", src_file)
+    m = fitz.Matrix(1,1)
     doc = fitz.open(src_file)
-    doc.get_page_pixmap(0)
-    doc.save(dst_file)
+    for page in doc:
+        pix = page.get_pixmap(matrix=m)
+        img_filename = "page-%04i.png" % page.number
+        img_path = os.path.join(dst_file, img_filename)
+        pix.save(img_path)
+    
+    # doc.get_page_pixmap(0)
+    doc.close()
+    # doc.save(dst_file)
 
 
-def get_files_pixmap(files_list):
+def get_files_pixmap(files_list, images_folder):
     for file in files_list:
         src = file[0]
         dst = file[1]
-        get_file_pixmap(src, dst)
+        get_file_pixmap(src, images_folder)
+
+
+
 
 
 
@@ -132,7 +145,7 @@ create_final_paths(a)
 # get_files_info(a)
 # stamp_files(a, stamp_file)
 
-get_files_pixmap(a)
+get_files_pixmap(a, img_folder)
 
 
 

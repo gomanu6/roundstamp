@@ -26,7 +26,8 @@ final_folder="${outside_folder}/${final_folder_name}"
 unstamped_zipfile="${annexure_file}"
 tmp_unzip_folder="${base_folder}/${tmp_unzip_folder_name}"
 
-
+images_folder="${base_folder}/${images_folder}"
+final_images_folder="${outside_folder}/${final_images_folder}"
 
 echo "${p} Checking if file exists"
 if [ -f "${unstamped_zipfile}" ]; then
@@ -51,8 +52,8 @@ fi
 echo "${p} Deleting Old Data Folder"
 rm -rf "${base_folder}"
 
-# echo "${p} Deleting Final Folder"
-# rm -rf "${final_folder}"
+echo "${p} Deleting Final Folder"
+rm -rf "${final_folder}"
 
 # if [ "$#" -le 0 ]; then
 #     echo "${p} File not specified"
@@ -77,6 +78,8 @@ fi
 mkdir -vp "${unstamped_folder}"
 mkdir -vp "${stamped_folder}"
 mkdir -vp "${stamps_folder}"
+mkdir -vp "${images_folder}"
+
 
 cp -v "${rstamp_file}" "${stamps_folder}"
 
@@ -95,11 +98,13 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 glob2_stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}"
+python3 glob2_stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}" "${images_folder}" 
 
 
 deactivate
 
 # mkdir -vp "${final_folder}"
 # cp -r "${stamped_folder}" "${final_folder}"
+mkdir -vp "${final_images_folder}"
+cp -r "${images_folder}" "${final_images_folder}"
 

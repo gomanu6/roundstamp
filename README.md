@@ -68,7 +68,7 @@ Round Stamp It!
 
 ### Fitz Page Class Methods and Attributes~
 
-- Page.get_pixmap()
+- Page.get_pixmap(matrix=matrix)
 - Page.insert_image()
 - Page.get_text()
 - Page.insert_text()
@@ -79,6 +79,15 @@ Round Stamp It!
 - Page.rect
 - Page.rotation
 
+### Fitz Pixmap
+
+- Pixmap.save()
+- Pixmap.pil_save()
+- Pixmap.set_dpi()
+- Pixmap.alpha
+- Pixmap.width
+- Pixmap.height
+- 
 
 
 ### References

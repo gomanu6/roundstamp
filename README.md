@@ -50,6 +50,7 @@ Round Stamp It!
 - Document.insert_page()
 - Document.insert_pdf()
 - Document.insert_file()
+    - infile (multiple) – the input document to insert. May be a filename specification as is valid for creating a Document or a Pixmap.
 - Document.layout()
 - Document.load_page()
 - Document.move_page()
@@ -70,6 +71,10 @@ Round Stamp It!
 
 - Page.get_pixmap(matrix=matrix)
 - Page.insert_image()
+    - 
+- Page.show_pdf_page()
+    - show_pdf_page(rect, docsrc, pno=0, keep_proportion=True, overlay=True, oc=0, rotate=0, clip=None)
+    - 
 - Page.get_text()
 - Page.insert_text()
 - Page.search_for()

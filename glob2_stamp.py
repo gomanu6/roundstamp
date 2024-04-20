@@ -118,12 +118,14 @@ def get_file_pixmap(src_file, dst_file):
     print("Getting pixmap for: --> ", src_file)
     m = fitz.Matrix(1,1)
     doc = fitz.open(src_file)
-
+    name = doc.name
     for page in doc:
         pix = page.get_pixmap(matrix=m)
         # fln = doc.name
         img_filename = "page-%04i.png" % page.number
-        img_path = os.path.join(dst_file, img_filename)
+        img_p = os.path.join(dst_file, name)
+        Path(img_p).mkdir(parents=True, exist_ok=True)
+        img_path = os.path.join(img_p, img_filename)
         pix.save(img_path)
     
     # doc.get_page_pixmap(0)

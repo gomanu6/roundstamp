@@ -9,6 +9,8 @@ from pprint import pprint
 
 from helpers.dpprint import dpprint
 import helpers.file_inventory as fi
+import helpers.folder_ops as fo
+import helpers.pdf_info as gpi
 
 
 stamp_file = sys.argv[1]
@@ -19,12 +21,19 @@ images_folder = sys.argv[4]
 # file_list = os.listdir(unstamped_folder)
 # file_list.sort()
 # pprint(file_list)
-# a = create_filtered_files(unstamped_folder)
-# dpprint(a)
+a = fi.create_filtered_files(unstamped_folder)
+dpprint(a)
 
 # dpprint(create_filtered_src_dst_files(unstamped_folder, stamped_folder))
 # dpprint(create_filtered_dst_files(unstamped_folder, stamped_folder))
 
 
-b = fi.create_filtered_unique_dst_folder(unstamped_folder, stamped_folder)
-dpprint(b)
+# b = fi.create_filtered_unique_dst_folder(unstamped_folder, stamped_folder)
+
+# fo.create_folders_from_list(b)
+
+# for item in a:
+#     dpprint(gpi.get_file_info(item, "name", "is_pdf", "is_encrypted", "page_count", "version_count"))
+
+
+

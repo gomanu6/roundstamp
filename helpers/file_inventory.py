@@ -38,13 +38,11 @@ def create_filtered_dst_files(src_dir, dst_dir, type_of_file="pdf"):
 
 
 def create_filtered_dst_folder(src_dir, dst_dir, type_of_file="pdf"):
-    # list_of_files = []
     list_of_folders = []
 
     for path in Path(src_dir).rglob(f"*.{type_of_file}"):
         if path.is_file():
             dst_file = str(path).replace(str(src_dir), str(dst_dir))
-            # list_of_files.append(dst_file)
             list_of_folders.append(os.path.split(dst_file)[0])
         
             
@@ -67,3 +65,4 @@ def create_filtered_unique_dst_folder(src_dir, dst_dir, type_of_file="pdf"):
         
             
     return unique_folders
+

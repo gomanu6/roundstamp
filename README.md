@@ -69,12 +69,14 @@ Round Stamp It!
 - Document.search_page_for()
 
 #### Fitz DOcument Class Attributes (relevant)
-- Document.is_closed
-- Document.is_pdf
-- Document.metadata
 - Document.name
+- Document.is_pdf
+- Document.is_closed
+- Document.is_dirty = PDF only: has document been changed yet?
+- Document.metadata
 - Document.page_count
 - Document.pagelayout
+- Document.version_count
 
 
 ### Fitz Page Class Methods and Attributes~

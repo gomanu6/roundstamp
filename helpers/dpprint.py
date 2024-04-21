@@ -4,6 +4,6 @@ from pprint import pprint
 
 
 def dpprint(inp):
-    print("--------Output Starts--------")
+    print("\n--------Output Starts--------")
     pprint(inp)
-    print("--------Output Ends----------")
+    print("--------Output Ends----------\n")

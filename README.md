@@ -1,6 +1,10 @@
 # roundstamp
 Round Stamp It!
 
+
+### Fitz use cases
+- [How to Make one PDF of all your Pictures (or Files)](https://pymupdf.readthedocs.io/en/latest/recipes-images.html#how-to-make-one-pdf-of-all-your-pictures-or-files)
+
 ### Pre requisites
 - bash
 - python3

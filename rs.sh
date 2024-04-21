@@ -24,7 +24,7 @@ unstamped_folder="${base_folder}/${unstamped_folder_name}"
 stamped_folder="${base_folder}/${stamped_folder_name}"
 
 # tmp_unzip_folder="${base_folder}/${tmp_unzip_folder_name}"
-images_folder="${base_folder}/${images_folder}"
+images_folder="${base_folder}/${images_folder_name}"
 
 final_folder="${dst_base_folder}/${final_folder_name}"
 final_images_folder="${dst_base_folder}/${final_images_folder}"
@@ -103,17 +103,20 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 glob2_stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${images_folder}" 
-
+python3 stamp3.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${images_folder}"
 
 deactivate
 ### Back to Bash
 
 ### Copy results
-cp -r "${images_folder}" "${final_folder}"
-cp -r "${stamped_folder}" "${final_images_folder}"
+cp -r "${stamped_folder}" "${final_folder}"
+chown -R "${o_user}:${o_group}" "${final_folder}"
+
+cp -r "${images_folder}" "${final_images_folder}"
+chown -R "${o_user}:${o_group}" "${final_images_folder}"
+
 
 ### Cleanup
-rm -rf "${base_folder}"
+# rm -rf "${base_folder}"
 # rm -rf ""${python_env_name}"
 

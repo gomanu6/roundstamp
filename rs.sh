@@ -103,15 +103,17 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 glob2_stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}" "${stamped_folder_name}" "${images_folder}" 
+python3 glob2_stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${images_folder}" 
 
 
 deactivate
 ### Back to Bash
 
+### Copy results
+cp -r "${images_folder}" "${final_folder}"
+cp -r "${stamped_folder}" "${final_images_folder}"
 
-# mkdir -vp "${final_folder}"
-# cp -r "${stamped_folder}" "${final_folder}"
-mkdir -vp "${final_images_folder}"
-cp -r "${images_folder}" "${final_images_folder}"
+### Cleanup
+rm -rf "${base_folder}"
+# rm -rf ""${python_env_name}"
 

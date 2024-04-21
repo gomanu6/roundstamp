@@ -20,10 +20,14 @@ Round Stamp It!
 - delete old archive and folder
 
 ### Commants and Utilities used
-- stat -c %U,
+- stat -c %U
 - stat -c %G
 - mkdir
+    - v = verbose
+    - p = create parents
 - cp
+    - r = recirsive
+    - v = verbose
 - unzip
     - q = quiet
     - o - overwrite

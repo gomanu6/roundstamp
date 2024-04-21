@@ -142,8 +142,6 @@ def get_files_pixmap(files_list, images_folder):
 
 
 
-
-
 a = list_files_recursively(unstamped_files)
 create_final_paths(a)
 # get_files_info(a)

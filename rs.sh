@@ -12,6 +12,8 @@ todays_date=$(date +%F)
 
 . ./rs.config
 
+unstamped_zipfile="${annexure_file}"
+
 base_folder="${data_folder}"
 
 stamps_folder="${base_folder}/${stamps_folder_name}"
@@ -20,14 +22,12 @@ stamp_file="${stamps_folder}/${stamp_filename}"
 unstamped_folder="${base_folder}/${unstamped_folder_name}"
 stamped_folder="${base_folder}/${stamped_folder_name}"
 
-final_folder="${outside_folder}/${final_folder_name}"
-
-
-unstamped_zipfile="${annexure_file}"
-tmp_unzip_folder="${base_folder}/${tmp_unzip_folder_name}"
-
+# tmp_unzip_folder="${base_folder}/${tmp_unzip_folder_name}"
 images_folder="${base_folder}/${images_folder}"
-final_images_folder="${outside_folder}/${final_images_folder}"
+
+final_folder="${dst_base_folder}/${final_folder_name}"
+final_images_folder="${dst_base_folder}/${final_images_folder}"
+
 
 echo "${p} Checking if file exists"
 if [ -f "${unstamped_zipfile}" ]; then

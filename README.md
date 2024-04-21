@@ -25,6 +25,8 @@ Round Stamp It!
 - mkdir
 - cp
 - unzip
+    - q = quiet
+    - o - overwrite
 - python3
 
 ### Python Libraries used

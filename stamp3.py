@@ -11,18 +11,19 @@ from helpers.dpprint import dpprint
 import helpers.file_inventory as fi
 import helpers.folder_ops as fo
 import helpers.pdf_info as gpi
+import helpers.create_pixmaps as cp
 
 
 stamp_file = sys.argv[1]
 unstamped_folder = sys.argv[2]
 stamped_folder = sys.argv[3]
-images_folder = sys.argv[4]
+pixmaps_folder = sys.argv[4]
 
 # file_list = os.listdir(unstamped_folder)
 # file_list.sort()
 # pprint(file_list)
 a = fi.create_filtered_files(unstamped_folder)
-dpprint(a)
+# dpprint(a)
 
 # dpprint(create_filtered_src_dst_files(unstamped_folder, stamped_folder))
 # dpprint(create_filtered_dst_files(unstamped_folder, stamped_folder))
@@ -35,5 +36,5 @@ dpprint(a)
 # for item in a:
 #     dpprint(gpi.get_file_info(item, "name", "is_pdf", "is_encrypted", "page_count", "version_count"))
 
-
-
+p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder)
+# dpprint(p)

@@ -20,8 +20,13 @@ Round Stamp It!
 - unzip in a folder
 - modify and overwrite
 - change destination-filename
+- create pixmaps
+- stamp pixmaps
+- re-create pixmaps
+- convert pixmaps into pdf
 - zip into new archive
 - delete old archive and folder
+
 
 ### Commants and Utilities used
 - stat -c %U

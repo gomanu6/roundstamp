@@ -28,7 +28,7 @@ def create_pixmaps(list, src_dir, dst_dir):
 
         for page in doc:
             pix = page.get_pixmap(matrix=matrix)
-            img_filename = "page-%04i.png" % (page.number)
+            img_filename = "page-%06i.png" % (page.number)
             img_path = os.path.join(dst_file, img_filename)
             pix.save(img_path)
         

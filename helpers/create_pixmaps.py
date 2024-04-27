@@ -32,6 +32,15 @@ def create_pixmaps(list, src_dir, dst_dir):
             img_path = os.path.join(dst_file, img_filename)
             pix.save(img_path)
         
+        for img in os.listdir(dst_file):
+            print(dst_file, img)
+            # pix = fitz.Pixmap(img)
+            # imgpdf = fitz.open("pdf", pix.pdfocr_tobytes())
+            # doc.insert_pdf(imgpdf)
+            # pix = None
+            # imgpdf.close()
+            
+        
         doc.close()
 
 

@@ -20,12 +20,14 @@ def create_pixmaps(list, src_dir, dst_dir, stamp_file):
         src_file = file[0]
         dst_file = file[1]
         print("Processing ", src_file)
+
         doc = fitz.open(src_file)
         matrix = fitz.Matrix(1, 1)    
 
         # filename = doc.name
         # img_p = os.path.join(dst_file, filename)
         Path(dst_file).mkdir(parents=True, exist_ok=True)
+        print("Basename--->>", os.path.basename(dst_file))
 
         for page in doc:
             pix = page.get_pixmap(matrix=matrix)
@@ -37,10 +39,33 @@ def create_pixmaps(list, src_dir, dst_dir, stamp_file):
         img_list.sort()
         # dpprint(img_list)
 
+
+
+
+        new_doc = fitz.open()
+
         for i, f in enumerate(img_list):
             print("i is -->", i)
             print("f is -->", f)
-        # new_doc = fitz.open()
+            # print("Source File is -->>", src_file)
+            image_path = os.path.join(dst_file, f)
+            print(image_path)
+            img = fitz.open(image_path)
+            rect = img[0].rect
+            pdfbytes = img.convert_to_pdf()
+            img.close()
+
+            imgpdf = fitz.open("pdf", pdfbytes)
+            page = new_doc.new_page( width = rect.width, height = rect.height)
+            page.show_pdf_page(rect, imgpdf, 0)
+            savepath = os.path.join(dst_file, os.path.basename(dst_file))
+        new_doc.ez_save(dst_file)
+
+        
+        
+        
+        
+        
         # for img in os.listdir(dst_file):
         #     print(dst_file, img)
         #     imgpath = os.path.join(dst_file, img)

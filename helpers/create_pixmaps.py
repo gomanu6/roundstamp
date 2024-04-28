@@ -10,26 +10,20 @@ import helpers.file_inventory as fi
 
 
 def create_pixmaps(list, src_dir, dst_dir, stamp_file):
+    
     final_list = fi.create_filtered_src_dst_files(src_dir, dst_dir)
-    # dpprint(final_list)
-
-    # for item in list:
-    #     tmp_list = []
-    #     tmp_list.append(item)
-    #     tmp_list.append(str(item).replace(str(src_dir), str(dst_dir)))
-    #     final_list.append(tmp_list)
 
     for file in final_list:
         src_file = file[0]
         dst_file = file[1]
         # print("Processing ", src_file)
+        Path(dst_file).mkdir(parents=True, exist_ok=True)
 
         doc = fitz.open(src_file)
         matrix = fitz.Matrix(1, 1)    
 
         # filename = doc.name
         # img_p = os.path.join(dst_file, filename)
-        Path(dst_file).mkdir(parents=True, exist_ok=True)
         # print("Creating Folder -->>", dst_file)
         # print("Basename--->>", os.path.basename(dst_file))
 

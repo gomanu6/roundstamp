@@ -109,11 +109,14 @@ deactivate
 ### Back to Bash
 
 ### Copy results
-cp -r "${stamped_folder}" "${final_folder}"
-chown -R "${o_user}:${o_group}" "${final_folder}"
+# cp -r "${stamped_folder}" "${final_folder}"
+# chown -R "${o_user}:${o_group}" "${final_folder}"
 
-cp -r "${images_folder}" "${final_images_folder}"
-chown -R "${o_user}:${o_group}" "${final_images_folder}"
+# cp -r "${images_folder}" "${final_images_folder}"
+# chown -R "${o_user}:${o_group}" "${final_images_folder}"
+
+cp -r "${base_folder}" "${final_folder}"
+chown -R "${o_user}:${o_group}" "${final_folder}"
 
 
 ### Cleanup

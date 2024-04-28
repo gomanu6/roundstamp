@@ -40,8 +40,7 @@ a = fi.create_filtered_files(unstamped_folder)
 # for item in a:
 #     dpprint(gpi.get_file_info(item, "name", "is_pdf", "is_encrypted", "page_count", "version_count"))
 
-cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
+p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
+dpprint(p)
 
-
-
-
+cpfi(p)

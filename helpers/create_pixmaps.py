@@ -13,9 +13,12 @@ def create_pixmaps(list, src_dir, dst_dir, stamp_file):
     
     final_list = fi.create_filtered_src_dst_files(src_dir, dst_dir)
 
+    list_of_pixmaps = []
+
     for file in final_list:
         src_file = file[0]
         dst_file = file[1]
+        list_of_pixmaps.append(dst_file)
         # print("Processing ", src_file)
         Path(dst_file).mkdir(parents=True, exist_ok=True)
 
@@ -32,6 +35,8 @@ def create_pixmaps(list, src_dir, dst_dir, stamp_file):
             img_filename = "page-%06i.png" % (page.number)
             img_path = os.path.join(dst_file, img_filename)
             pix.save(img_path)
+    
+
         
         # img_list = os.listdir(dst_file)
         # img_list.sort()
@@ -100,6 +105,8 @@ def create_pixmaps(list, src_dir, dst_dir, stamp_file):
             
         
         doc.close()
+
+    return list_of_pixmaps
 
 
 

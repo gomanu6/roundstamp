@@ -13,6 +13,7 @@ import helpers.folder_ops as fo
 import helpers.pdf_info as gpi
 import helpers.create_pixmaps as cp
 from helpers.create_pdf import create_pdf_from_images as cpfi
+from helpers.create_pdf_of_image import create_pdf_of_image as cpi
 
 
 stamp_file = sys.argv[1]
@@ -43,4 +44,5 @@ a = fi.create_filtered_files(unstamped_folder)
 p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
 # dpprint(p)
 
-cpfi(p)
+cpi(p)
+# cpfi(p)

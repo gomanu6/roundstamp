@@ -9,6 +9,7 @@ from helpers.dpprint import dpprint
 
 def convert_image_to_pdf(dir, image):
     print(f"converting {image} to pdf .. ")
+
     doc = fitz.open()
     s = str(image).replace(".png", ".pdf")
 
@@ -23,12 +24,16 @@ def convert_image_to_pdf(dir, image):
     save_path = os.path.join(dir, s)
 
     doc.save(save_path)
+    
+    return save_path
+
 
 
 
 def create_pdf_from_list_of_images(list):
 
-    print("Welcome to Create PDF of Image")
+    print("Welcome to Create PDF from list of Images")
+    list_of_pdfs_saved = []
     for dir in list:
         print()
         print("Processing ... ", dir)
@@ -41,7 +46,10 @@ def create_pdf_from_list_of_images(list):
         # dpprint(list_of_images)
 
         for i, f in enumerate(list_of_images):
-            convert_image_to_pdf(dir, f)
+            saved_file = convert_image_to_pdf(dir, f)
+            list_of_pdfs_saved.append(saved_file)
+        
+    return list_of_pdfs_saved
 
 
 

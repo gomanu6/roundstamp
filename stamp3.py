@@ -44,5 +44,5 @@ a = fi.create_filtered_files(unstamped_folder)
 p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
 # dpprint(p)
 
-cpi(p)
-# cpfi(p)
+z = cpi(p)
+

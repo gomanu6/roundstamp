@@ -12,6 +12,7 @@ import helpers.file_inventory as fi
 import helpers.folder_ops as fo
 import helpers.pdf_info as gpi
 import helpers.create_pixmaps as cp
+from helpers.create_pdf import create_pdf_from_images as cpfi
 
 
 stamp_file = sys.argv[1]
@@ -24,6 +25,9 @@ pixmaps_folder = sys.argv[4]
 # pprint(file_list)
 a = fi.create_filtered_files(unstamped_folder)
 # dpprint(a)
+
+# b = fi.create_filtered_src_dst_files(unstamped_folder, stamped_folder)
+# dpprint(b)
 
 # dpprint(create_filtered_src_dst_files(unstamped_folder, stamped_folder))
 # dpprint(create_filtered_dst_files(unstamped_folder, stamped_folder))
@@ -38,3 +42,4 @@ a = fi.create_filtered_files(unstamped_folder)
 
 p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
 # dpprint(p)
+

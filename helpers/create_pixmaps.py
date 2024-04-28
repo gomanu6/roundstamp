@@ -10,20 +10,21 @@ import helpers.file_inventory as fi
 
 
 def create_pixmaps(list, src_dir, dst_dir, stamp_file):
-    
+    print("Welcome to Creating Pixmaps ....")
     final_list = fi.create_filtered_src_dst_files(src_dir, dst_dir)
 
     list_of_pixmaps = []
 
     for file in final_list:
+        
         src_file = file[0]
         dst_file = file[1]
         list_of_pixmaps.append(dst_file)
-        # print("Processing ", src_file)
         Path(dst_file).mkdir(parents=True, exist_ok=True)
 
+        print("Processing ", src_file)
         doc = fitz.open(src_file)
-        matrix = fitz.Matrix(1, 1)    
+        matrix = fitz.Matrix(2, 2)    
 
         # filename = doc.name
         # img_p = os.path.join(dst_file, filename)

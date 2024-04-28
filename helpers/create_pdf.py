@@ -30,8 +30,6 @@ def create_pdf_from_images(list):
             page = doc.new_page(width = rect.width, height = rect.height)
             page.show_pdf_page(rect, imgPDF, 0)
 
-
-
         doc.save(save_path)
 
 

@@ -6,9 +6,31 @@ import fitz
 from helpers.dpprint import dpprint
 
 
-def create_pdf_of_image(list):
+
+def convert_image_to_pdf(dir, image):
+    print(f"converting {image} to pdf .. ")
+    doc = fitz.open()
+    s = str(image).replace(".png", ".pdf")
+
+    img = fitz.open(os.path.join(dir, image))
+    rect = img[0].rect
+    pdfbytes = img.convert_to_pdf()
+    img.close()
+
+    imgpdf = fitz.open("pdf", pdfbytes)
+    page = doc.new_page(width = rect.width, height = rect.height)
+    page.show_pdf_page(rect, imgpdf, 0)
+    save_path = os.path.join(dir, s)
+
+    doc.save(save_path)
+
+
+
+def create_pdf_from_list_of_images(list):
+
     print("Welcome to Create PDF of Image")
     for dir in list:
+        print()
         print("Processing ... ", dir)
         # print(os.path.isdir(file))
         # print(file)
@@ -19,22 +41,7 @@ def create_pdf_of_image(list):
         # dpprint(list_of_images)
 
         for i, f in enumerate(list_of_images):
-            doc = fitz.open()
-            s = str(f).replace(".png", ".pdf")
-            
-            img = fitz.open(os.path.join(dir, f))
-            rect = img[0].rect
-            pdfbytes = img.convert_to_pdf()
-            img.close()
-
-            imgPDF = fitz.open("pdf", pdfbytes)
-            page = doc.new_page(width = rect.width, height = rect.height)
-            page.show_pdf_page(rect, imgPDF, 0)
-            save_path = os.path.join(dir, s)
-
-            doc.save(save_path)
-
-
+            convert_image_to_pdf(dir, f)
 
 
 

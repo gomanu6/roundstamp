@@ -48,9 +48,9 @@ p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
 z = cpi(p)
 
 for item in z:
-    
+
     new_page_name = "st_" + os.path.basename(item)
 
 
-    print("")
+    print(os.path.dirname(item))
 

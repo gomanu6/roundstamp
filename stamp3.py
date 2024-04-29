@@ -14,6 +14,7 @@ import helpers.pdf_info as gpi
 import helpers.create_pixmaps as cp
 from helpers.create_pdf import create_pdf_from_images as cpfi
 from helpers.create_pdf_of_image import create_pdf_from_list_of_images as cpi
+from helpers.stamp_pdf import stamp_pdf_page as spp
 
 
 stamp_file = sys.argv[1]
@@ -45,4 +46,11 @@ p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
 # dpprint(p)
 
 z = cpi(p)
+
+for item in z:
+    
+    new_page_name = "st_" + os.path.basename(item)
+
+
+    print("")
 

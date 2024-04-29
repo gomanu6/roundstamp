@@ -7,6 +7,7 @@ from helpers.dpprint import dpprint
 
 
 
+
 def convert_image_to_pdf(dir, image):
     print(f"converting {image} to pdf .. ")
 
@@ -24,7 +25,7 @@ def convert_image_to_pdf(dir, image):
     save_path = os.path.join(dir, s)
 
     doc.save(save_path)
-    
+   
     return save_path
 
 

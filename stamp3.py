@@ -50,13 +50,13 @@ z = cpi(p)
 for item in z:
     file_name = os.path.basename(item)
     dir_name = os.path.dirname(item)
-
+    # print("Dir Name: -- ", dir_name)
     new_page_name = "st_" + file_name
     # print("new page name is : ", new_page_name)
     save_path = os.path.join(dir_name, new_page_name)
-    print(save_path)
+    # print("Save Path : ", save_path)
 
-    # spp(dir_name, item, stamp_file, 75, 75, 100, 100)
+    spp(dir_name, item, stamp_file, 75, 75, 100, 100)
     # print("The file is : -->", item)
     # print("The dirname is: -->", os.path.dirname(item))
 

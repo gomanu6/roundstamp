@@ -25,6 +25,7 @@ def convert_single_image_to_pdf(dir, image):
     save_path = os.path.join(dir, s)
 
     doc.save(save_path)
+    os.remove(os.path.join(dir, image))
    
     return save_path
 

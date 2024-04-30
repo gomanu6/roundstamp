@@ -15,6 +15,8 @@ dist_bottom = 100
 def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist_bottom):
     print("Stamping File: -->", os.path.basename(page), " in ", os.path.basename(dir) )
     # open_path = os.path.join(dir, page)
+    old_page = page
+
     doc = fitz.open(page)
     new_name = "st_" + str(os.path.basename(page))
     save_path = os.path.join(dir, new_name)
@@ -34,6 +36,8 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
         page.insert_image(coords, filename=stamp)
     
     doc.ez_save(save_path)
+
+    os.remove(old_page)
 
 
 

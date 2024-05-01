@@ -41,14 +41,17 @@ a = fi.create_filtered_files(unstamped_folder)
 # for item in a:
 #     dpprint(gpi.get_file_info(item, "name", "is_pdf", "is_encrypted", "page_count", "version_count"))
 
-p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
+p = cp.create_pixmaps(unstamped_folder, pixmaps_folder)
 # dpprint(p)
 
 z = cpi(p)
 
 x = sp.stamp_list_of_pages(z, stamp_file)
 
-dpprint(x)
+# dpprint(x)
+
+y = cp.create_pixmap_from_list(x)
+dpprint(y)
 
 # # stamped_pdfs = {}
 # for item in z:

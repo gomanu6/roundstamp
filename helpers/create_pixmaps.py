@@ -110,10 +110,21 @@ def create_pixmaps(list, src_dir, dst_dir, stamp_file):
     return list_of_pixmaps
 
 
+def create_pixmap_from_single_pdf(document):
 
+    doc = fitz.open(document)
+    matrix = fitz.Matrix(2, 2)
 
+    old_doc_name = os.path.basename(document)
+    dir_path = os.path.dirname(document)
+    dir_name = os.path.basename(dir_path)
 
+    new_doc_name = str(old_doc_name).replace(".pdf", ".png")
 
-
+    for page in doc:
+        pix = page.get_pixmap(matrix=matrix)
+        image_path = os.path.join(dir_path, new_doc_name)
+        pix.save(image_path)
+    
 
 

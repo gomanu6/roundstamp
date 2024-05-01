@@ -14,8 +14,7 @@ import helpers.pdf_info as gpi
 import helpers.create_pixmaps as cp
 from helpers.create_pdf import create_pdf_from_images as cpfi
 from helpers.create_pdf_of_image import create_pdf_from_list_of_images as cpi
-from helpers.stamp_pdf import stamp_pdf_page as spp
-
+import helpers.stamp_pdf as sp
 
 stamp_file = sys.argv[1]
 unstamped_folder = sys.argv[2]
@@ -47,16 +46,36 @@ p = cp.create_pixmaps(a, unstamped_folder, pixmaps_folder, stamp_file)
 
 z = cpi(p)
 
-for item in z:
-    file_name = os.path.basename(item)
-    dir_name = os.path.dirname(item)
-    # print("Dir Name: -- ", dir_name)
-    new_page_name = "st_" + file_name
-    # print("new page name is : ", new_page_name)
-    save_path = os.path.join(dir_name, new_page_name)
-    # print("Save Path : ", save_path)
+x = sp.stamp_list_of_pages(z, stamp_file)
 
-    spp(dir_name, item, stamp_file, 75, 75, 100, 100)
-    # print("The file is : -->", item)
-    # print("The dirname is: -->", os.path.dirname(item))
+dpprint(x)
+
+# # stamped_pdfs = {}
+# for item in z:
+#     file_name = os.path.basename(item)
+#     dir_path = os.path.dirname(item)
+#     # print("Dir Name: -- ", dir_name)
+#     new_page_name = "st_" + file_name
+#     # print("new page name is : ", new_page_name)
+#     save_path = os.path.join(dir_path, new_page_name)
+#     # print("Save Path : ", save_path)
+    
+#     # pdf_name = os.path.basename(dir_path)
+#     stamped_pages = []
+#     # stamped_pdfs[pdf_name] = {}
+#     # stamped_pdfs[pdf_name][dir_path] = dir_path
+
+
+#     stamped_page = spp(dir_path, item, stamp_file, 75, 75, 100, 100)
+#     stamped_pages.append(stamped_page)
+
+#     stamped_pages
+#     # print("The file is : -->", item)
+#     # print("The dirname is: -->", os.path.dirname(item))
+
+# # {
+# # "book_name" : "name of book",
+# # "path" : "dir path"
+# # "pages" : [page, page]
+# # }
 

@@ -61,6 +61,7 @@ def create_pixmaps(src_dir, dst_dir):
 
 def create_pixmap_from_list(list):
 
+    
     list_of_pixmaps = []
 
     for item in list:
@@ -71,7 +72,7 @@ def create_pixmap_from_list(list):
 
         doc = fitz.open(item)
         matrix = fitz.Matrix(2, 2)
-
+        print("Creating pixmap for : ", doc_name, " in ", os.path.basename(dir_path))
         for page in doc:
             pix = page.get_pixmap(matrix=matrix)
             save_path = os.path.join(dir_path, new_pix_name)

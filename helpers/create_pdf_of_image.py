@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import fitz
 from helpers.dpprint import dpprint
+import helpers.folder_ops as fo
 
 
 
@@ -32,7 +33,7 @@ def convert_single_image_to_pdf(dir, image):
 
 
 
-def create_pdf_from_list_of_images(list):
+def create_single_pdf_from_list_of_single_images(list):
 
     print("Welcome to Create PDF from list of Images")
     list_of_pdfs_saved = []
@@ -55,9 +56,40 @@ def create_pdf_from_list_of_images(list):
 
 
 
+def create_pdf_file_from_multiple_images(list):
+    print()
+    print(".... Creating PDF File ....")
 
+    list_of_folders = fo.get_list_of_unique_folders(list)
+    # dpprint(list_of_folders)
 
+    for dir in list_of_folders:
+        print()
+        print("Processing Image folder", dir)
+        list_of_image_files = os.listdir(dir)
+        list_of_image_files.sort()
+        print()
+        print("List of Images in ", dir)
+        dpprint(list_of_image_files)
 
+        final_doc_name = os.path.basename(dir)
+        print("Final File Name ", final_doc_name)
+        final_doc_path = os.path.dirname(dir)
+        print("Final file path ", final_doc_path)
+        final_doc_save_path = os.path.join(final_doc_path, final_doc_name)
+        print("Final save Path ", final_doc_save_path)
 
+        # doc = fitz.open()
+        # for i, f in enumerate(list_of_image_files):
+        #     img = fitz.open(os.path.join(dir, f))
+        #     rect = img[0].rect
+        #     pdfbytes = img.convert_to_pdf()
+        #     img.close()
 
+        #     imgpdf = fitz.open("pdf", pdfbytes)
+        #     page = doc.new_page(width = rect.width, height = rect.height)
+        #     page.show_pdf_page(rect, imgpdf, (i+1))
+            
+            
 
+        

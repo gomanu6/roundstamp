@@ -20,6 +20,16 @@ def create_folders_from_list(list, verbose=False):
             create_folder(folder)
 
 
+def get_list_of_unique_folders(list):
+    list_of_unique_folders = []
+
+    for item in list:
+        folder = os.path.dirname(item)
+        if folder not in list_of_unique_folders:
+            list_of_unique_folders.append(folder)
+        
+    return list_of_unique_folders
+
 # def create_folders_for_pixmap(list):
     
 #     for file in list:

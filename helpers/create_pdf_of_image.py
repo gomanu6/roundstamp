@@ -37,21 +37,18 @@ def create_single_pdf_from_list_of_single_images(list):
     print()
     print("Create Individual PDFs from Images")
     list_of_pdfs_saved = []
-    for dir in list:
-        # print()
-        print("Processing Images in ... ", dir)
-        # print(os.path.isdir(file))
-        # print(file)
 
-        # save_path = os.path.join(dir, os.path.basename(dir))
+    for dir in list:
+        print("Processing Images in ... ", dir)
+
         list_of_images = os.listdir(dir)
         list_of_images.sort()
-        # dpprint(list_of_images)
         
-        list_of_pdfs_saved.append(dir)
+        # list_of_pdfs_saved.append(dir)
 
         for i, f in enumerate(list_of_images):
             saved_file = convert_single_image_to_pdf(dir, f)
+            list_of_pdfs_saved.append(saved_file) ## use for stamp3.py
         
     return list_of_pdfs_saved
 

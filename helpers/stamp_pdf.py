@@ -54,6 +54,11 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
 def stamp_list_of_pages(list, stamp):
 
     stamped_pages = []
+
+    # for dir in list:
+    #     list_of_pdfs = os.listdir(dir)
+
+
     
     for item in list:
         file_name = os.path.basename(item)
@@ -62,7 +67,7 @@ def stamp_list_of_pages(list, stamp):
         new_page_name = "st_" + file_name
         save_path = os.path.join(dir_path, new_page_name)
 
-        stamped_page = stamp_pdf_page(dir_path, item, stamp, 75, 75, 100, 100)
+        stamped_page = stamp_pdf_page(dir_path, item, stamp, stamp_width, stamp_height, dist_right, dist_bottom)
         stamped_pages.append(stamped_page)
 
     return stamped_pages

@@ -41,12 +41,17 @@ pixmaps_folder = sys.argv[4]
 #     dpprint(gpi.get_file_info(item, "name", "is_pdf", "is_encrypted", "page_count", "version_count"))
 
 
-### Create initial Pixmaps from PDF Files
-p = cp.create_pixmaps(unstamped_folder, pixmaps_folder)
-# dpprint(p)
+### Create a Second order list with source and destination paths to pdf files
+a = fi.create_filtered_src_dst_files(unstamped_folder, stamped_folder)
+# dpprint(a)
+
+### Create individual Pixmaps from PDF Files
+b = cp.create_initial_pixmaps_from_list(a)
+# dpprint(b)
 
 ### Convert pixmaps to individual PDF files to prepare for stamping
-z = cpi.create_single_pdf_from_list_of_single_images(p)
+z = cpi.create_single_pdf_from_list_of_single_images(b)
+dpprint(z)
 
 ### Stamp individual PDF Files
 x = sp.stamp_list_of_pages(z, stamp_file)

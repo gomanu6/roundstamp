@@ -23,7 +23,7 @@ pixmaps_folder = sys.argv[4]
 # print(pixmaps_folder)
 
 
-a = fi.create_filtered_files(unstamped_folder)
+# a = fi.create_filtered_files(unstamped_folder)
 # dpprint(a)
 
 # b = fi.create_filtered_src_dst_files(unstamped_folder, stamped_folder)
@@ -40,26 +40,22 @@ a = fi.create_filtered_files(unstamped_folder)
 # for item in a:
 #     dpprint(gpi.get_file_info(item, "name", "is_pdf", "is_encrypted", "page_count", "version_count"))
 
+
+### Create initial Pixmaps from PDF Files
 p = cp.create_pixmaps(unstamped_folder, pixmaps_folder)
 # dpprint(p)
 
+### Convert pixmaps to individual PDF files to prepare for stamping
 z = cpi.create_single_pdf_from_list_of_single_images(p)
 
+### Stamp individual PDF Files
 x = sp.stamp_list_of_pages(z, stamp_file)
-
 # dpprint(x)
 
+### Create Pixmaps of stamped PDF Files
 y = cp.create_pixmap_from_list(x)
 # dpprint(y)
 
+### Convert and collate stamped pixmaps into final PDF Files
 a = cpi.create_pdf_file_from_multiple_images(y)
 
-
-
-# w = fo.get_list_of_unique_folders(y)
-# dpprint(w)
-
-# u = cpi.create_single_pdf_from_list_of_single_images(w)
-# dpprint(u)
-
-# v = cpi.create_pdf_file_from_multiple_images(u)

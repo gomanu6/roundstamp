@@ -5,6 +5,7 @@ from pathlib import Path
 import fitz
 from helpers.dpprint import dpprint
 import helpers.file_inventory as fi
+from collections import defaultdict
 
 
 
@@ -27,21 +28,21 @@ def create_pixmap_from_single_pdf(document):
 
 
 
-def create_pixmaps(src_dir, dst_dir):
-    print("Welcome to Creating Pixmaps ....")
-    final_list = fi.create_filtered_src_dst_files(src_dir, dst_dir)
-
+def create_initial_pixmaps_from_list(list_of_files):
+    print()
+    print("Creating Initial Pixmaps ....")
+    
     list_of_pixmaps = []
 
-    for file in final_list:
+    for file in list_of_files:
         
         src_file = file[0]
         dst_file = file[1]
         list_of_pixmaps.append(dst_file)
+        
         Path(dst_file).mkdir(parents=True, exist_ok=True)
 
         print("Processing ", src_file)
-
 
         doc = fitz.open(src_file)
         matrix = fitz.Matrix(2, 2)    
@@ -51,7 +52,6 @@ def create_pixmaps(src_dir, dst_dir):
             img_filename = "page-%06i.png" % (page.number)
             img_path = os.path.join(dst_file, img_filename)
             pix.save(img_path)
-    
 
         doc.close()
 
@@ -85,6 +85,39 @@ def create_pixmap_from_list(list):
         
 
 
+# def create_initial_pixmaps_from_list(list_of_files):
+#     print()
+#     print("Creating Initial Pixmaps ....")
+    
+#     list_of_pixmaps = {}
 
+#     for file in list_of_files:
+        
+#         src_file = file[0]
+#         dst_file = file[1]
+
+#         file_name = os.path.basename(dst_file)
+#         # list_of_pixmaps.append(file_name)
+#         list_of_pixmaps[file_name] = {}
+#         list_of_pixmaps[file_name]["path"] = os.path.dirname(dst_file)
+#         list_of_pixmaps[file_name]["pages"] = []
+
+#         Path(dst_file).mkdir(parents=True, exist_ok=True)
+
+#         print("Processing ", src_file)
+
+#         doc = fitz.open(src_file)
+#         matrix = fitz.Matrix(2, 2)    
+
+#         for page in doc:
+#             pix = page.get_pixmap(matrix=matrix)
+#             img_filename = "page-%06i.png" % (page.number)
+#             img_path = os.path.join(dst_file, img_filename)
+#             pix.save(img_path)
+#             list_of_pixmaps[file_name]["pages"] += [img_filename]
+
+#         doc.close()
+
+#     return list_of_pixmaps
 
 

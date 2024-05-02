@@ -8,13 +8,10 @@ import fitz
 from pprint import pprint
 
 from helpers.dpprint import dpprint
-import helpers.file_inventory as fi
-import helpers.folder_ops as fo
-import helpers.pdf_info as gpi
-import helpers.create_pixmaps as cp
 
-import helpers.create_pdf_of_image as cpi
-import helpers.stamp_pdf as sp
+import helpers.file_inventory as fi
+import helpers.create_pixmaps as cpx
+
 
 stamp_file = sys.argv[1]
 unstamped_folder = sys.argv[2]
@@ -22,5 +19,9 @@ stamped_folder = sys.argv[3]
 pixmaps_folder = sys.argv[4]
 
 
+a = fi.create_filtered_src_dst_files(unstamped_folder, stamped_folder)
+# dpprint(a)
 
+b = cpx.create_initial_pixmaps_from_list(a)
+dpprint(b)
 

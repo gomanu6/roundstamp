@@ -103,7 +103,7 @@ pip install --upgrade pymupdf
 
 # python3 stamp.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${unstamped_zipfile}" "${stamped_folder}" "${path_to_replace}"
 
-python3 stamp3.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${images_folder}"
+python3 stamp4.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${images_folder}"
 
 deactivate
 ### Back to Bash

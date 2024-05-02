@@ -10,7 +10,7 @@ import helpers.folder_ops as fo
 
 
 def convert_single_image_to_pdf(dir, image):
-    print(f"converting {image} to pdf .. ")
+    # print(f"converting {image} to pdf .. ")
 
     doc = fitz.open()
     s = str(image).replace(".png", ".pdf")
@@ -34,12 +34,12 @@ def convert_single_image_to_pdf(dir, image):
 
 
 def create_single_pdf_from_list_of_single_images(list):
-
-    print("Welcome to Create PDF from list of Images")
+    print()
+    print("Create Individual PDFs from Images")
     list_of_pdfs_saved = []
     for dir in list:
-        print()
-        print("Processing ... ", dir)
+        # print()
+        print("Processing Images in ... ", dir)
         # print(os.path.isdir(file))
         # print(file)
 
@@ -47,10 +47,11 @@ def create_single_pdf_from_list_of_single_images(list):
         list_of_images = os.listdir(dir)
         list_of_images.sort()
         # dpprint(list_of_images)
+        
+        list_of_pdfs_saved.append(dir)
 
         for i, f in enumerate(list_of_images):
             saved_file = convert_single_image_to_pdf(dir, f)
-            list_of_pdfs_saved.append(saved_file)
         
     return list_of_pdfs_saved
 

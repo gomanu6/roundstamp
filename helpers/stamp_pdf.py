@@ -9,8 +9,9 @@ import fitz
 stamp_width = 75
 stamp_height = 75
 
-dist_right = 100
-dist_bottom = 100
+dist_right = 150
+dist_bottom = 150
+
 
 def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist_bottom):
     # stamped_pages = {}

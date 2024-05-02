@@ -93,7 +93,7 @@ cp -v "${rstamp_file}" "${stamps_folder}"
 ## Unzip file
 unzip -qo "${unstamped_zipfile}" -d "${unstamped_folder}"
 
-
+STARTTIME=$(date +%s)
 ### Handing over to Python
 echo "${p} Local Installed Python Version is: $(python3 --version)"
 
@@ -107,6 +107,9 @@ python3 stamp3.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${i
 
 deactivate
 ### Back to Bash
+ENDTIME=$(date +%s)
+
+echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete this task..."
 
 ### Copy results
 # cp -r "${stamped_folder}" "${final_folder}"
@@ -122,4 +125,5 @@ chown -R "${o_user}:${o_group}" "${final_folder}"
 ### Cleanup
 # rm -rf "${base_folder}"
 # rm -rf ""${python_env_name}"
+
 

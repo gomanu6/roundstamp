@@ -99,6 +99,8 @@ Round Stamp It!
 
 - Page.number
 - Page.rect
+    - Page.rect.width
+    - Page.rect.height
 - Page.rotation
 
 ### Fitz Pixmap

@@ -6,7 +6,8 @@ import fitz
 from helpers.dpprint import dpprint
 import helpers.folder_ops as fo
 
-
+matrix_x = 2
+matrix_y = 2
 
 
 def convert_single_image_to_pdf(dir, image):
@@ -97,3 +98,28 @@ def create_pdf_file_from_multiple_images(list):
             
 
         
+
+def create_pixmapped_pdf(list):
+
+    list_of_pixmaps = []
+    
+    for entry in list:
+
+        src = list[0]
+        dst = list[1]
+        # print(src, dst)
+
+        Path(dst).mkdir(parents=True, exist_ok=True)
+
+        print("Processing", src)
+        doc = fitz.open(src)
+        matrix = fitz.Matrix(matrix_x, matrix_y)    
+
+        for page in doc:
+            pix = page.get_pixmap(matrix=matrix)
+            image_filename = "page-%06i.png" % (page.number)
+            pdf_filename = "page-%06i.pdf" % (page.number)
+
+            rect = pix.rect[0]
+            pdfbytes = pix.convert_to_pdf()
+            pix.close()

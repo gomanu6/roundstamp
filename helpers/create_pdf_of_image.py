@@ -99,14 +99,15 @@ def create_pdf_file_from_multiple_images(list):
 
         
 
-def create_pixmapped_pdf(list):
+def create_pixmapped_pdfs(list):
 
     list_of_pixmaps = []
-    
+    list_of_pdfs = []
+
     for entry in list:
 
-        src = list[0]
-        dst = list[1]
+        src = entry[0]
+        dst = entry[1]
         # print(src, dst)
 
         Path(dst).mkdir(parents=True, exist_ok=True)
@@ -117,9 +118,21 @@ def create_pixmapped_pdf(list):
 
         for page in doc:
             pix = page.get_pixmap(matrix=matrix)
+            piximg = fitz.open(pix)
             image_filename = "page-%06i.png" % (page.number)
             pdf_filename = "page-%06i.pdf" % (page.number)
 
-            rect = pix.rect[0]
-            pdfbytes = pix.convert_to_pdf()
-            pix.close()
+            rect = piximg.irect
+            pdfbytes = piximg.convert_to_pdf()
+            piximg.close()
+
+            new_doc = fitz.open()
+            imgpdf = fitz.open("pdf", pdfbytes)
+            new_page = new_doc.new_page(width = rect.width, height = rect.height)
+            new_page.show_pdf_page(rect, imgpdf, 0)
+
+            save_path = os.path.join(dst, pdf_filename)
+            new_doc.save(save_path)
+            list_of_pdfs.append(save_path)
+        
+    return list_of_pdfs

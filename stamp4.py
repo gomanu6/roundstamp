@@ -26,7 +26,8 @@ a = fi.create_filtered_src_dst_files(unstamped_folder, stamped_folder)
 # dpprint(a)
 
 
-cpi.create_pixmapped_pdf(a)
+e = cpi.create_pixmapped_pdfs(a)
+dpprint(e)
 
 
 ### Create individual Pixmaps from PDF Files

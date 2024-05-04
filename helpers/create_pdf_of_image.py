@@ -35,11 +35,11 @@ def convert_single_image_to_pdf(dir, image):
 
 def create_single_pdf_from_list_of_single_images(list):
     print()
-    print("Create Individual PDFs from Images")
+    print(" ..... Create Individual PDFs from Images")
     list_of_pdfs_saved = []
 
     for dir in list:
-        print("[STEP 2]: Processing Images in ... ", dir)
+        print("[STEP 2 / 4]: Processing Images in ... ", dir)
 
         list_of_images = os.listdir(dir)
         list_of_images.sort()
@@ -56,14 +56,14 @@ def create_single_pdf_from_list_of_single_images(list):
 
 def create_pdf_file_from_multiple_images(list):
     print()
-    print(".... Creating Final Stamped PDF Files ....")
+    print(" ..... Creating Final Stamped PDF Files ....")
 
     list_of_folders = fo.get_list_of_unique_folders(list)
     # dpprint(list_of_folders)
 
     for dir in list_of_folders:
         print()
-        print("[STEP 4]: Processing Image folder ", dir)
+        print("[STEP 4 / 4]: Processing Image folder ", dir)
         list_of_image_files = os.listdir(dir)
         list_of_image_files.sort()
         # print("List of Images in ", dir)

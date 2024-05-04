@@ -63,18 +63,18 @@ def create_pdf_file_from_multiple_images(list):
 
     for dir in list_of_folders:
         print()
-        print("Processing Image folder", dir)
+        print("Processing Image folder for FInal PDF ", dir)
         list_of_image_files = os.listdir(dir)
         list_of_image_files.sort()
-        print("List of Images in ", dir)
+        # print("List of Images in ", dir)
         dpprint(list_of_image_files)
 
         final_doc_name = "st_" + os.path.basename(dir)
-        print("Final File Name ", final_doc_name)
+        # print("Final File Name ", final_doc_name)
         final_doc_path = os.path.dirname(dir)
-        print("Final file path ", final_doc_path)
+        # print("Final file path ", final_doc_path)
         final_doc_save_path = os.path.join(final_doc_path, final_doc_name)
-        print("Final save Path ", final_doc_save_path)
+        # print("Final save Path ", final_doc_save_path)
 
         doc = fitz.open()
         for i, f in enumerate(list_of_image_files):
@@ -88,6 +88,7 @@ def create_pdf_file_from_multiple_images(list):
             page.show_pdf_page(rect, imgpdf, 0)
 
         doc.save(final_doc_save_path)
+        print("Saved Final Stamped PDF File", final_doc_name)
     
         for item in list_of_image_files:
             os.remove(os.path.join(dir, item))

@@ -21,7 +21,7 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
     base_dir = os.path.basename(dir)
     page_name = os.path.basename(page)
 
-    print("Stamping File: -->", page_name, " in ", base_dir )
+    # print("Stamping File: -->", page_name, " in ", base_dir )
     # open_path = os.path.join(dir, page)
     old_page = page
 
@@ -47,7 +47,7 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
         img_name = str(new_name).replace(".pdf", ".png")
         pix_save_path = os.path.join(dir, img_name)
         pix.save(pix_save_path)
-        print("Saving stamped page", img_name)
+        print("Saving stamped page", img_name, "in", base_dir)
     
     # doc.ez_save(save_path)
     doc.close()

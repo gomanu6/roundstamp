@@ -37,16 +37,16 @@ c = cpi.create_single_pdf_from_list_of_single_images(b)
 ### Stamp the individual files
 d = sp.stamp_list_of_pages(c, stamp_file)
 # returns list of stamped files
-# dpprint(d)
+dpprint(d)
 
 
 ### Create Pixmaps of stamped PDF Files
-y = cpx.create_pixmap_from_list(d)
+# y = cpx.create_pixmap_from_list(d)
 # dpprint(y)
 
 
 ### Convert and collate stamped pixmaps into final PDF Files
-z = cpi.create_pdf_file_from_multiple_images(y)
+z = cpi.create_pdf_file_from_multiple_images(d)
 
 
 

@@ -6,11 +6,11 @@ import sys
 from pathlib import Path
 import fitz
 
-stamp_width = 75
-stamp_height = 75
+stamp_width = 80
+stamp_height = 80
 
-dist_right = 150
-dist_bottom = 150
+dist_right = 200
+dist_bottom = 175
 
 
 def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist_bottom):
@@ -42,12 +42,19 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
         coords = fitz.Rect(start_width, start_height, end_width, end_height)
 
         page.insert_image(coords, filename=stamp)
+
+        pix = page.get_pixmap(matrix=fitz.Matrix(2,2))
+        img_name = str(new_name).replace(".pdf", ".png")
+        pix_save_path = os.path.join(dir, img_name)
+        pix.save(pix_save_path)
+        print("Saving stamped page", img_name)
     
-    doc.ez_save(save_path)
+    # doc.ez_save(save_path)
+    doc.close()
 
     os.remove(old_page)
 
-    return str(save_path)
+    return str(pix_save_path)
 
 
 

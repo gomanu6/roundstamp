@@ -17,7 +17,7 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
     # stamped_pages = {}
     # stamped_pages[dir] = []
 
-
+    
     base_dir = os.path.basename(dir)
     page_name = os.path.basename(page)
 
@@ -47,7 +47,7 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
         img_name = str(new_name).replace(".pdf", ".png")
         pix_save_path = os.path.join(dir, img_name)
         pix.save(pix_save_path)
-        print("Saving stamped page", img_name, "in", base_dir)
+        # print("Saving stamped page", img_name, "in", base_dir)
     
     # doc.ez_save(save_path)
     doc.close()
@@ -64,13 +64,13 @@ def stamp_list_of_pages(list, stamp):
 
     # for dir in list:
     #     list_of_pdfs = os.listdir(dir)
-
-
+    print()
+    print("Stamping PDF pages ... ")
     
     for item in list:
         file_name = os.path.basename(item)
         dir_path = os.path.dirname(item)
-
+        print("[STEP 3]: Stamping pages in ", dir_path)
         new_page_name = "st_" + file_name
         save_path = os.path.join(dir_path, new_page_name)
 

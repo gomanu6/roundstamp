@@ -25,7 +25,7 @@ def create_initial_pixmaps_from_list(list_of_files):
         
         Path(dst_file).mkdir(parents=True, exist_ok=True)
 
-        print("[STEP 1 / 4]: Processing ", src_file)
+        print("[STEP 1 of 4]: Processing ", src_file)
 
         doc = fitz.open(src_file)
         matrix = fitz.Matrix(matrix_x, matrix_y)    

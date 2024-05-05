@@ -73,7 +73,7 @@ def stamp_list_of_pages(list, stamp):
     list_of_folders = fo.get_list_of_unique_folders(list)
 
     for folder in list_of_folders:
-        print("[STEP 3 / 4]: Stamping pages in ", folder)
+        print("[STEP 3 of 4]: Stamping pages in ", folder)
         list_of_pdf_files = os.listdir(folder)
         # list_of_pdf_files.sort()
 

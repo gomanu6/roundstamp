@@ -37,9 +37,11 @@ if [ -f "${unstamped_zipfile}" ]; then
     o_group=$(stat -c %G "${unstamped_zipfile}")
     zip_filename=$(basename "${unstamped_zipfile}")
     lowercase_filename=${zip_filename%.*}
-    echo "The Zip file is: ${lowercase_filename}"
+    # echo "The Zip file is: ${lowercase_filename}"
+    echo "The Zip file is: ${unstamped_zipfile}"
+
     # path_to_replace="${unstamped_folder}/${lowercase_filename}"
-    echo "${p} File exists and has username as ${o_user} and group as ${o_group}"
+    # echo "${p} File exists and has username as ${o_user} and group as ${o_group}"
 else
     echo "${p} File does not exist"
     echo "${p} exiting .. "
@@ -109,11 +111,18 @@ deactivate
 ### Back to Bash
 ENDTIME=$(date +%s)
 
-echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete this task..."
+echo
+echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 
 ### Copy results
-cp -r "${stamped_folder}" "${final_folder}"
-chown -R "${o_user}:${o_group}" "${final_folder}"
+
+echo "Creating Zip ... "
+cd "${stamped_folder}"
+zip -rq "${final_folder}/stamped_annexures.zip" .
+# cp -r "${stamped_folder}" "${final_folder}"
+# chown -R "${o_user}:${o_group}" "${final_folder}"
+cd ..
+chown -R "${o_user}:${o_group}" "${final_folder}/stamped_annexures.zip"
 
 # cp -r "${images_folder}" "${final_images_folder}"
 # chown -R "${o_user}:${o_group}" "${final_images_folder}"
@@ -123,7 +132,9 @@ chown -R "${o_user}:${o_group}" "${final_folder}"
 
 
 ### Cleanup
-# rm -rf "${base_folder}"
+echo
+echo "Performing Cleanup"
+rm -rf "${base_folder}"
 # rm -rf ""${python_env_name}"
 
 

@@ -39,7 +39,7 @@ def create_single_pdf_from_list_of_single_images(list):
     list_of_pdfs_saved = []
 
     for dir in list:
-        print("[STEP 2 / 4]: Processing Images in ... ", dir)
+        print("[STEP 2 of 4]: Processing Images in ... ", dir)
 
         list_of_images = os.listdir(dir)
         list_of_images.sort()
@@ -63,7 +63,7 @@ def create_pdf_file_from_multiple_images(list):
 
     for dir in list_of_folders:
         print()
-        print("[STEP 4 / 4]: Processing Image folder ", dir)
+        print("[STEP 4 of 4]: Processing Image folder ", dir)
         list_of_image_files = os.listdir(dir)
         list_of_image_files.sort()
         # print("List of Images in ", dir)

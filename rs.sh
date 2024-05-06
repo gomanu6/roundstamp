@@ -107,6 +107,8 @@ pip install --upgrade pymupdf
 
 python3 stamp4.py "${stamp_file}" "${unstamped_folder}" "${stamped_folder}" "${images_folder}"
 
+
+# pip3 freeze > requirements.txt
 deactivate
 ### Back to Bash
 ENDTIME=$(date +%s)

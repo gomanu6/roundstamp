@@ -11,8 +11,8 @@ import helpers.folder_ops as fo
 stamp_width = 80
 stamp_height = 80
 
-dist_right = 200
-dist_bottom = 175
+dist_right = 150
+dist_bottom = 100
 
 
 def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist_bottom):
@@ -46,7 +46,7 @@ def stamp_pdf_page(dir, page, stamp, stamp_width, stamp_height, dist_right, dist
 
         open_page.insert_image(coords, filename=stamp)
 
-        pix = open_page.get_pixmap(matrix=fitz.Matrix(2,2))
+        pix = open_page.get_pixmap(matrix=fitz.Matrix(1,1))
         img_name = "st_" + str(page).replace(".pdf", ".png")
         pix_save_path = os.path.join(dir, img_name)
         pix.save(pix_save_path)

@@ -35,7 +35,7 @@ Round Stamp It!
     - v = verbose
     - p = create parents
 - cp
-    - r = recirsive
+    - r = recursive
     - v = verbose
 - unzip
     - q = quiet

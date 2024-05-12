@@ -15,7 +15,7 @@ def create_pixmap_of_pdf(src_file, working_folder):
 
     Path(working_folder).mkdir(parents=True, exist_ok=True)
 
-    print("Processing ", src_file)
+    print("    Creating Pixmaps for", src_file)
 
     doc = fitz.open(src_file)
     matrix = fitz.Matrix(matrix_x, matrix_y) 
@@ -27,6 +27,7 @@ def create_pixmap_of_pdf(src_file, working_folder):
         pix.save(img_path)
         list_of_pixmaps.append(img_filename)
     doc.close()
+ 
 
     return list_of_pixmaps
 

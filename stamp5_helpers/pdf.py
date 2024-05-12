@@ -34,6 +34,7 @@ def convert_image_to_pdf(image, working_dir):
 
 def convert_list_of_images_to_pdf(all_files):
 
+    print("    Converting Pixmaps to pdf")
     for key in all_files:
         working_path = all_files[key]["working_path"]
         pixmap_files = all_files[key]["pixmap_pages"]

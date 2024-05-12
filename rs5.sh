@@ -65,11 +65,15 @@ STARTTIME=$(date +%s)
 
 
 ### Handing over to Python
+echo
 echo "${p} Local Installed Python Version is: $(python3 --version)"
+
 
 python3 -m venv "${python_env_name}"
 source "${python_env_name}/bin/activate"
 pip install --upgrade "${python_modules}"
+
+echo
 
 python3 stamp5.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
 
@@ -82,6 +86,7 @@ deactivate
 ENDTIME=$(date +%s)
 echo
 echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
+echo
 
 ### Deleting Old Destination Folder
 if [ -d "${dst_folder}" ]; then
@@ -94,7 +99,7 @@ dirs_create "${dst_folder}"
 
 
 ### Copy results
-echo "Creating Zip ... "
+echo "${p} Creating Zip ... "
 cd "${final_stamped_folder}"
 zip -rq "${dst_folder}/stamped_annexures.zip" .
 cd ..
@@ -107,7 +112,7 @@ chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 ### Cleanup
 echo
-echo "Performing Cleanup"
+echo "${p} Performing Cleanup"
 rm -rf "${base_folder}"
 rm -rf "${python_env_name}"
 echo "${p} Cleanup Complete"

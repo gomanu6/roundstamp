@@ -33,15 +33,12 @@ def create_pixmap_of_pdf(src_file, working_folder):
 
 def create_pixmaps(all_files):
 
-    # dpprint(all_files)
-
     for key in all_files:
         src_dir = all_files[key]["filepath"]
         dst_dir = all_files[key]["working_path"]
-        # print("The File is", all_files[key]["filename"])
-        # print(all_files[key]["working_path"])
+
         pixmaps = create_pixmap_of_pdf(src_dir, dst_dir)
 
-        all_files[key]["pages"] = pixmaps
+        all_files[key]["pixmap_pages"] = pixmaps
         
 

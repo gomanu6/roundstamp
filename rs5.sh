@@ -91,6 +91,10 @@ echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 # cd ..
 
 
+if [ -d "${dst_folder}" ]; then
+    echo "${p} deleting previous destination folder"
+    rm -rf "${dst_folder}"
+
 dirs_create "${dst_folder}"
 cp -r "${base_folder}" "${dst_folder}"
 chown -R "${o_user}:${o_group}" "${dst_folder}"

@@ -11,6 +11,7 @@ from helpers.dpprint import dpprint
 
 import stamp5_helpers.filer_list as fl
 import stamp5_helpers.pixmaps as pm
+import stamp5_helpers.pdf as pd
 
 stamp_file = sys.argv[1]
 unstamped_folder = sys.argv[2]
@@ -21,4 +22,9 @@ stamped_folder = sys.argv[4]
 all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_folder)
 
 pm.create_pixmaps(all_files)
+pd.convert_list_of_images_to_pdf(all_files)
+
+dpprint(all_files)
+
+
 

@@ -121,7 +121,6 @@ echo
 echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 
 ### Copy results
-
 echo "Creating Zip ... "
 cd "${stamped_folder}"
 zip -rq "${final_folder}/stamped_annexures.zip" .

@@ -13,7 +13,7 @@ stamp_height = 80
 dist_right = 150
 dist_bottom = 100
 
-matrix=fitz.Matrix(1,1)
+matrix=fitz.Matrix(2,2)
 
 
 def stamp_pdf_page(working_dir, pagename, stamp, stamp_width, stamp_height, dist_right, dist_bottom):
@@ -61,4 +61,36 @@ def stamp_list_of_pages(all_files, stamp):
         all_files[key]["stamped_images"] = stamped_pages
 
             
+
+def create_pdf(all_files):
+      
+    for key in all_files:
+        working_path = all_files[key]["working_path"]
+        
+        dst_path = all_files[key]["dst_path"]
+        Path(dst_path).mkdir(parents=True, exist_ok=True)
+        final_file_name = all_files[key]["filename"]
+        # final_save_dir = os.path.dirname(dst_path)
+        # final_save_path = os.path.join(final_save_dir, final_file_name)
+
+        stamped_images = all_files[key]["stamped_images"]
+        stamped_images.sort()
+
+        doc = fitz.open()
+        for file in stamped_images:
+            img = fitz.open(os.path.join(working_path, file))
+            rect = img[0].rect
+            pdfbytes = img.convert_to_pdf()
+            img.close()
+
+            imgpdf = fitz.open("pdf", pdfbytes)
+            page = doc.new_page(width = rect.width, height = rect.height)
+            page.show_pdf_page(rect, imgpdf, 0)
+        
+        doc.save(dst_path)
+
+        # os.rmdir(working_path)
+
+
+             
 

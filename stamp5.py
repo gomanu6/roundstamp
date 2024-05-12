@@ -26,8 +26,9 @@ all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_f
 pm.create_pixmaps(all_files)
 pd.convert_list_of_images_to_pdf(all_files)
 sp.stamp_list_of_pages(all_files, stamp_file)
+sp.create_pdf(all_files)
 
-dpprint(all_files)
+# dpprint(all_files)
 
 
 

@@ -5,8 +5,8 @@ from pathlib import Path
 import fitz
 from helpers.dpprint import dpprint
 
-matrix_x = 1
-matrix_y = 1
+matrix_x = 2
+matrix_y = 2
 
 
 def create_pixmap_of_pdf(src_file, working_folder):

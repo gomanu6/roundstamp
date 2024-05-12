@@ -83,26 +83,31 @@ ENDTIME=$(date +%s)
 echo
 echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 
-
-### Copy results
-# echo "Creating Zip ... "
-# cd "${final_stamped_folder}"
-# zip -rq "${dst_folder}/stamped_annexures.zip" .
-# cd ..
-
-
+### Deleting Old Destination Folder
 if [ -d "${dst_folder}" ]; then
     echo "${p} deleting previous destination folder"
     rm -rf "${dst_folder}"
 fi
 
+### Creating Destination Folder
 dirs_create "${dst_folder}"
-cp -r "${base_folder}" "${dst_folder}"
+
+
+### Copy results
+echo "Creating Zip ... "
+cd "${final_stamped_folder}"
+zip -rq "${dst_folder}/stamped_annexures.zip" .
+cd ..
 chown -R "${o_user}:${o_group}" "${dst_folder}"
+
+
+### For testing only (Copy wcontents of working folder)
+# cp -r "${base_folder}" "${dst_folder}"
+# chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 ### Cleanup
 echo
 echo "Performing Cleanup"
 rm -rf "${base_folder}"
-# rm -rf "${python_env_name}"
+rm -rf "${python_env_name}"
 echo "${p} Cleanup Complete"

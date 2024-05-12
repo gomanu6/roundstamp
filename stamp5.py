@@ -44,6 +44,7 @@ all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_f
 #     print(key)
 
 total_files = len(all_files)
+total_pages = 0
 
 for index, key in enumerate(all_files):
     filepath = all_files[key]["filepath"]
@@ -66,6 +67,7 @@ for index, key in enumerate(all_files):
     for pix_file in pixmap_files:
         pdf_file = pd.convert_image_to_pdf(pix_file, working_dir)
         unstamped_pdf_files.append(pdf_file)
+        total_pages += 1
     all_files[key]["pixmap_pages"] = []
     all_files[key]["unstamped_pdf_files"] = unstamped_pdf_files
 
@@ -100,7 +102,10 @@ for index, key in enumerate(all_files):
     doc.save(final_path)
     all_files[key]["stamped_images"] = []
 
-
-dpprint(all_files)
+print()
+print("Total Files Stamped: ", total_files)
+print("Total Pages stamped: ", total_pages)
+# print("Thank you for using the Stamping Utility")
+# dpprint(all_files)
 
 

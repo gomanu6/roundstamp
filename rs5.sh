@@ -85,12 +85,12 @@ echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 
 
 ### Copy results
-echo "Creating Zip ... "
-cd "${final_stamped_folder}"
-zip -rq "${dst_folder}/stamped_annexures.zip" .
-cd ..
+# echo "Creating Zip ... "
+# cd "${final_stamped_folder}"
+# zip -rq "${dst_folder}/stamped_annexures.zip" .
+# cd ..
 
-chown -R "${o_user}:${o_group}" "${dst_folder}"
+# chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 
 ### Cleanup

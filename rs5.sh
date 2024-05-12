@@ -22,7 +22,7 @@ final_stamped_folder="${base_folder}/${stamped_folder_name}"
 
 dst_folder="${destination_folder}"
 
-round_stamp_file="${working_stamps_folder}/${round_stamp_file}"
+round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
 
 ## Checking Input File characteristics
 echo "${p} Checking Input File"
@@ -55,7 +55,7 @@ dirs_create "${working_stamps_folder}" "${working_unstamped_folder}" "${working_
 
 
 ## Copying all Stamps
-cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}"
+cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}/"
 
 ## Unzipping Files
 echo "${p} Unzipping files"
@@ -94,6 +94,7 @@ echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 if [ -d "${dst_folder}" ]; then
     echo "${p} deleting previous destination folder"
     rm -rf "${dst_folder}"
+fi
 
 dirs_create "${dst_folder}"
 cp -r "${base_folder}" "${dst_folder}"

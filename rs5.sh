@@ -55,7 +55,7 @@ dirs_create "${working_stamps_folder}" "${working_unstamped_folder}" "${working_
 
 
 ## Copying all Stamps
-cp -v "${existing_stamps_folder}/*" "${working_stamps_folder}"
+cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}"
 
 ## Unzipping Files
 echo "${p} Unzipping files"
@@ -90,12 +90,14 @@ echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 # zip -rq "${dst_folder}/stamped_annexures.zip" .
 # cd ..
 
-# chown -R "${o_user}:${o_group}" "${dst_folder}"
 
+dirs_create "${dst_folder}"
+cp -r "${base_folder}" "${dst_folder}"
+chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 ### Cleanup
 echo
 echo "Performing Cleanup"
 rm -rf "${base_folder}"
-rm -rf "${python_env_name}"
+# rm -rf "${python_env_name}"
 echo "${p} Cleanup Complete"

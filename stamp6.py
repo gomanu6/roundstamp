@@ -39,6 +39,7 @@ all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_f
 # sp.stamp_list_of_pages(all_files, stamp_file)
 # sp.create_pdf(all_files)
 
+
 ## Stamp 6 Way
 total_files = len(all_files)
 total_pages = 0
@@ -53,7 +54,6 @@ for index, key in enumerate(all_files):
     ### Create Pixmaps
     print()
     print(f"Processing File {index + 1} of {total_files}", "File:", filename, "in ", os.path.basename(os.path.dirname(filepath)))
-    # print(f"Processing File {index + 1} of {total_files}", filename, "in ", os.path.dirname(filepath))
     file_pixmaps = pm.create_pixmap_of_pdf(filepath, working_dir)
     all_files[key]["pixmap_pages"] = file_pixmaps
     

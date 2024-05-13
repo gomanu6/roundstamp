@@ -10,7 +10,7 @@ o_group=""
 todays_date=$(date +%F)
 
 . ./rs6.config
-. ./helpers/dirs_create.sh
+. ./stamp6_helpers/dirs_create.sh
 
 unstamped_zipfile="${annexure_file}"
 base_folder="${data_folder}"
@@ -24,40 +24,48 @@ dst_folder="${destination_folder}"
 
 round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
 
+echo "Version 0.6a"
+
 ## Checking Input File characteristics
-echo "${p} Checking Input File"
+echo "**** Checking Input File ****"
 if [ -f "${unstamped_zipfile}" ]; then
     o_user=$(stat -c %U "${unstamped_zipfile}")
     o_group=$(stat -c %G "${unstamped_zipfile}")
     zip_filename=$(basename "${unstamped_zipfile}")
     lowercase_filename=${zip_filename%.*}
-    echo "The Zip file is: ${unstamped_zipfile}"
+    echo "    The Zip file is: ${unstamped_zipfile}"
 else
-    echo "${p} File does not exist"
-    echo "${p} exiting .. "
+    echo "${p} ERROR: File does not exist"
+    echo "${p} ERROR: exiting .. "
     exit 1
 fi
 
 ## Creating base working folder
+echo
+echo "**** Creating Base Folder ****"
 if [ -d "${base_folder}" ]; then
     echo "${p} Deleting Old Data Folder and making a new one"
     rm -rf "${base_folder}"
-    if mkdir -vp "${base_folder}"; then
+    if mkdir -p "${base_folder}"; then
         echo "${p} Created Working Folder --> ${base_folder}"
     else
-        echo "${p} Unable to create Working Folder..... exiting"
+        echo "${p} ERROR: Unable to create Working Folder..... exiting"
         exit 2
     fi
 fi
 
 ## Creating internal folder structure
+echo
+echo "**** Creating Internal Folder Structure ****"
 dirs_create "${working_stamps_folder}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
 
 
 ## Copying all Stamps
+echo
 cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}/"
 
 ## Unzipping Files
+echo
 echo "${p} Unzipping files"
 unzip -qo "${unstamped_zipfile}" -d "${working_unstamped_folder}"
 
@@ -67,15 +75,16 @@ STARTTIME=$(date +%s)
 ### Handing over to Python
 echo
 echo "${p} Local Installed Python Version is: $(python3 --version)"
+echo
 
-
+echo "---> Handing over to Python"
 python3 -m venv "${python_env_name}"
 source "${python_env_name}/bin/activate"
 pip install --upgrade "${python_modules}"
 
 echo
 
-python3 stamp5.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
+python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
 
 # pip3 freeze > requirements.txt
 deactivate
@@ -114,5 +123,5 @@ chown -R "${o_user}:${o_group}" "${dst_folder}"
 echo
 echo "${p} Performing Cleanup"
 rm -rf "${base_folder}"
-rm -rf "${python_env_name}"
+rm -rf "./${python_env_name}"
 echo "${p} Cleanup Complete"

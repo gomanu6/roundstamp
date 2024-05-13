@@ -5,11 +5,11 @@ from pathlib import Path
 import fitz
 from helpers.dpprint import dpprint
 
-matrix_x = 2
-matrix_y = 2
+# matrix_x = 2
+# matrix_y = 2
 
 
-def create_pixmap_of_pdf(src_file, working_folder):
+def create_pixmap_of_pdf(src_file, working_folder, matrix=fitz.Matrix(1,1)):
     
     list_of_pixmaps = []
 
@@ -18,7 +18,7 @@ def create_pixmap_of_pdf(src_file, working_folder):
     print("    Creating Pixmaps for", src_file)
 
     doc = fitz.open(src_file)
-    matrix = fitz.Matrix(matrix_x, matrix_y) 
+    # matrix = fitz.Matrix(matrix_x, matrix_y) 
 
     for page in doc:
         pix = page.get_pixmap(matrix=matrix)
@@ -32,13 +32,13 @@ def create_pixmap_of_pdf(src_file, working_folder):
     return list_of_pixmaps
 
 
-def create_pixmaps(all_files):
+def create_pixmaps(all_files, matrix):
 
     for key in all_files:
         src_dir = all_files[key]["filepath"]
         dst_dir = all_files[key]["working_path"]
 
-        pixmaps = create_pixmap_of_pdf(src_dir, dst_dir)
+        pixmaps = create_pixmap_of_pdf(src_dir, dst_dir, matrix)
 
         all_files[key]["pixmap_pages"] = pixmaps
         

@@ -111,7 +111,7 @@ dirs_create "${dst_folder}"
 echo "${p} Creating Zip ... "
 cd "${final_stamped_folder}"
 zip -rq "${dst_folder}/stamped_annexures.zip" .
-cd ..
+cd ../..
 chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 
@@ -123,5 +123,5 @@ chown -R "${o_user}:${o_group}" "${dst_folder}"
 echo
 echo "${p} Performing Cleanup"
 rm -rf "${base_folder}"
-rm -rf "./${python_env_name}"
+rm -rf "./${python_env_name}/"
 echo "${p} Cleanup Complete"

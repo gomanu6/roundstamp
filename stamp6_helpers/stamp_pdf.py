@@ -16,7 +16,7 @@ dist_bottom = 100
 matrix=fitz.Matrix(2,2)
 
 
-def stamp_pdf_page(working_dir, pagename, stamp, stamp_width, stamp_height, dist_right, dist_bottom):
+def stamp_pdf_page(working_dir, pagename, stamp, stamp_width, stamp_height, dist_right, dist_bottom, matrix=fitz.Matrix(2,2)):
 
     old_page = os.path.join(working_dir, pagename)
     doc = fitz.open(old_page)

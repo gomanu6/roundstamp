@@ -28,8 +28,8 @@ stamp_height = 60
 dist_right = 150
 dist_bottom = 100
 
-pixmap_matrix=fitz.Matrix(1,1)
-stamp_matrix=fitz.Matrix(2,2)
+pixmap_matrix=fitz.Matrix(5,5)
+stamp_matrix=fitz.Matrix(5,5)
 
 
 
@@ -122,7 +122,13 @@ for index, key in enumerate(all_files):
 
     file_end_time = time.time()
     file_time = file_end_time - file_start_time
-    print(f"  |--- File {index + 1} took {str(round(file_time, 2))} seconds")
+    uom = "seconds"
+    reported_time = file_time / 60
+    if file_time > 60:
+        uom = "minutes"
+        print(f"  |--- File {index + 1} took {str(round(reported_time, 2))} {uom}")
+    else:
+        print(f"  |--- File {index + 1} took {str(round(file_time, 2))} seconds")
 
 
 print()

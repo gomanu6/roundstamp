@@ -60,6 +60,8 @@ for index, key in enumerate(all_files):
     pixmap_start_time = time.time()
     file_pixmaps = pm.create_pixmap_of_pdf(filepath, working_dir, matrix=pixmap_matrix)
     all_files[key]["pixmap_pages"] = file_pixmaps
+    num_pages = len(all_files[key]["pixmap_pages"])
+    print(f"  -- This file has {num_pages} Pages")
     pixmap_end_time = time.time()
     pixmap_time_taken = pixmap_end_time - pixmap_start_time
     print(f"       |__ that took {str(round(pixmap_time_taken, 2))} seconds")

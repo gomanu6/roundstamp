@@ -47,7 +47,7 @@ fi
 log_file_name="${zip_filename}__${todays_date}__${script_run_time}.txt"
 log_file="${base_folder}/${log_file_name}"
 
-touch "${log_file}"
+# touch "${log_file}"
 
 ## Creating base working folder
 echo
@@ -104,12 +104,12 @@ deactivate
 ENDTIME=$(date +%s)
 echo
 
-TOTALTIME=$(($ENDTIME - $STARTTIME))
+# TOTALTIME=$(($ENDTIME - $STARTTIME))
 
 
-REPORT_UOM="seconds"
-REPORT_TIME="${TOTALTIME}"
-# echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
+# REPORT_UOM="seconds"
+# REPORT_TIME="${TOTALTIME}"
+echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 
 # if [[ $TOTALTIME ge 60 ]]; then
 #     REPORT_TIME=$(($TOTALTIME / 60))
@@ -117,7 +117,7 @@ REPORT_TIME="${TOTALTIME}"
 # fi
 # echo "It took ${REPORT_TIME} ${REPORT_UOM} to complete ..."
 
-echo "It took ${TOTALTIME} ${REPORT_UOM} to complete ..."
+# echo "It took ${TOTALTIME} ${REPORT_UOM} to complete ..."
 echo
 
 ### Deleting Old Destination Folder

@@ -141,9 +141,35 @@ for index, key in enumerate(all_files):
         print(f"  |--- File {index + 1} took {str(round(reported_time, 2))} {uom}")
 
 
+
+
+py_report_uom = "seconds"
+
+
+
+
 print()
 print("Total Files Stamped: ", total_files)
 print("Total Pages stamped: ", total_pages)
+print("Total Pixmap Time: ", str(round(pixmap_time, 2)), py_report_uom)
+print("Total Pixmap to PDF Time: ", str(round(pixmap_to_pdf_time, 2)), py_report_uom)
+print("Total Stamping Time: ", str(round(total_stamp_time, 2)), py_report_uom)
+print("Total Final PDF Time: ", str(round(total_final_pdf_time, 2)), py_report_uom)
+
+
+total_time = 0
+total_time += pixmap_time
+total_time += pixmap_to_pdf_time
+total_time += total_stamp_time
+total_time += total_final_pdf_time
+
+py_report_time = str(round(total_time, 2))
+
+if total_time > 60:
+    py_report_uom = "minutes"
+    py_report_time = str(round(total_time / 60, 2))
+
+print("Total Time Taken = ", py_report_time, py_report_uom)
 # print("Thank you for using the Stamping Utility")
 # dpprint(all_files)
 

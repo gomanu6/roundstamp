@@ -22,13 +22,13 @@ working_folder = sys.argv[3]
 stamped_folder = sys.argv[4]
 
 
-stamp_width = 60
-stamp_height = 60
+stamp_width = 120
+stamp_height = 120
 
-dist_right = 90
-dist_bottom = 100
+dist_right = 140
+dist_bottom = 150
 
-pixmap_matrix=fitz.Matrix(1,1)
+pixmap_matrix=fitz.Matrix(2,2)
 stamp_matrix=fitz.Matrix(2,2)
 
 

@@ -133,7 +133,7 @@ dirs_create "${dst_folder}"
 ### Copy results
 echo "${p} Creating Zip ... "
 cd "${final_stamped_folder}"
-zip -rq "${dst_folder}/stamped_annexures.zip" .
+zip -rq "${dst_folder}/stamped_annexures-004.zip" .
 cd ../..
 cp "${log_file}" "${dst_folder}/"
 chown -R "${o_user}:${o_group}" "${dst_folder}"

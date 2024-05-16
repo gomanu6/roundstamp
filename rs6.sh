@@ -8,9 +8,11 @@ o_user=""
 o_group=""
 
 todays_date=$(date +%F)
+script_run_time=$(date +%H-%M)
 
 . ./rs6.config
 . ./stamp6_helpers/dirs_create.sh
+
 
 unstamped_zipfile="${annexure_file}"
 base_folder="${data_folder}"
@@ -23,6 +25,8 @@ final_stamped_folder="${base_folder}/${stamped_folder_name}"
 dst_folder="${destination_folder}"
 
 round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
+
+
 
 echo "Version 0.6a"
 
@@ -39,6 +43,11 @@ else
     echo "${p} ERROR: exiting .. "
     exit 1
 fi
+
+log_file_name="${zip_filename}__${todays_date}__${script_run_time}.txt"
+log_file="${base_folder}/${log_file_name}"
+
+touch "${log_file}"
 
 ## Creating base working folder
 echo
@@ -84,7 +93,7 @@ pip install --upgrade "${python_modules}"
 
 echo
 
-python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
+python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}" | tee -a "${log_file}"
 
 # pip3 freeze > requirements.txt
 deactivate
@@ -94,7 +103,21 @@ deactivate
 
 ENDTIME=$(date +%s)
 echo
-echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
+
+TOTALTIME=$(($ENDTIME - $STARTTIME))
+
+
+REPORT_UOM="seconds"
+REPORT_TIME="${TOTALTIME}"
+# echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
+
+# if [[ $TOTALTIME ge 60 ]]; then
+#     REPORT_TIME=$(($TOTALTIME / 60))
+#     REPORT_UOM="minutes"
+# fi
+# echo "It took ${REPORT_TIME} ${REPORT_UOM} to complete ..."
+
+echo "It took ${TOTALTIME} ${REPORT_UOM} to complete ..."
 echo
 
 ### Deleting Old Destination Folder
@@ -112,6 +135,7 @@ echo "${p} Creating Zip ... "
 cd "${final_stamped_folder}"
 zip -rq "${dst_folder}/stamped_annexures.zip" .
 cd ../..
+cp "${log_file}" "${dst_folder}/"
 chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 

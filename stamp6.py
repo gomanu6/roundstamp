@@ -25,7 +25,7 @@ stamped_folder = sys.argv[4]
 stamp_width = 60
 stamp_height = 60
 
-dist_right = 150
+dist_right = 90
 dist_bottom = 100
 
 pixmap_matrix=fitz.Matrix(1,1)
@@ -46,6 +46,11 @@ all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_f
 total_files = len(all_files)
 total_pages = 0
 
+pixmap_time = 0
+pixmap_to_pdf_time = 0
+total_stamp_time = 0
+total_final_pdf_time = 0
+
 for index, key in enumerate(all_files):
     file_start_time = time.time()
     filepath = all_files[key]["filepath"]
@@ -64,6 +69,7 @@ for index, key in enumerate(all_files):
     print(f"  -- This file has {num_pages} Pages")
     pixmap_end_time = time.time()
     pixmap_time_taken = pixmap_end_time - pixmap_start_time
+    pixmap_time += pixmap_time_taken
     print(f"       |__ Created Pixmaps --- {str(round(pixmap_time_taken, 2))} seconds")
     
     ### Convert Pixmap to PDF
@@ -79,6 +85,7 @@ for index, key in enumerate(all_files):
     all_files[key]["unstamped_pdf_files"] = unstamped_pdf_files
     pix_pdf_end_time = time.time()
     pix_pdf_time = pix_pdf_end_time - pix_pdf_start_time
+    pixmap_to_pdf_time += pix_pdf_time
     print(f"       |__ Converted Pixmaps to pdf files --- {str(round(pix_pdf_time, 2))} seconds")
 
 
@@ -94,6 +101,7 @@ for index, key in enumerate(all_files):
     all_files[key]["stamped_images"] = stamped_pages
     stamp_end_time = time.time()
     stamp_time = stamp_end_time - stamp_start_time
+    total_stamp_time += stamp_time
     print(f"       |__ Stamped PDF Files --- {str(round(stamp_time, 2))} seconds")
 
 
@@ -118,6 +126,7 @@ for index, key in enumerate(all_files):
     all_files[key]["stamped_images"] = []
     final_pdf_end_time = time.time()
     final_pdf_time = final_pdf_end_time - final_pdf_start_time
+    total_final_pdf_time += final_pdf_time
     print(f"       |__ Created Final PDF File --- {str(round(final_pdf_time, 2))} seconds")
 
     file_end_time = time.time()

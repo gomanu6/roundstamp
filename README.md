@@ -116,3 +116,5 @@ Round Stamp It!
 
 ### References
 - [Virtual Environments](https://ioflood.com/blog/python-activate-venv/)
+- [How to Run a Python CLI Tool Inside a Docker Container](https://dteslya.engineer/blog/2022/07/14/how-to-run-a-python-cli-tool-inside-a-docker-container/)
+- [Dockerize Your Python Command-Line Program](https://medium.com/swlh/dockerize-your-python-command-line-program-6a273f5c5544)

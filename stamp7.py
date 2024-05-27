@@ -192,6 +192,6 @@ def stamp_all_files(all_files):
     # dpprint(all_files)
 
 
-# stamp_all_files(all_files)
+stamp_all_files(all_files)
 
-results = Parallel(n_jobs=-1)(delayed(stamp_all_files)(file) for file in all_files)
+# results = Parallel(n_jobs=-1)(delayed(stamp_all_files)(file) for file in all_files)

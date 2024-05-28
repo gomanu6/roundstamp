@@ -61,7 +61,8 @@ Round Stamp It!
 - pymupdf
     - fitz
 
-### Fitz Document Class
+### [Fitz Document Class](https://pymupdf.readthedocs.io/en/latest/document.html)
+- fitz.Matrix(2,2)
 
 #### [Fitz Document Class Methods (relevant)](https://pymupdf.readthedocs.io/en/latest/document.html)
 - Document.ez_save()
@@ -122,10 +123,10 @@ Round Stamp It!
 - Pixmap.save()
 - Pixmap.pil_save()
 - Pixmap.set_dpi()
+- Pixmap.convert_to_pdf()
 - Pixmap.alpha
 - Pixmap.width
 - Pixmap.height
-- 
 
 
 ### References

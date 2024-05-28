@@ -13,22 +13,29 @@ Round Stamp It!
 - [virtualenvwrapper](https://pypi.org/project/virtualenvwrapper/)
 
 
+### Features to add
+- logging
+- send logs by emails
+
+
 ### Stamp and Overwrite
 - start with a zip file
     - does not support formats other than .zip
-
 - unzip in a folder
-- modify and overwrite
-- change destination-filename
+    - data/unstamped
+- Path().rglob()
+    - create a filtered dict of files
+    - change destination-filename
 - create pixmaps
-- stamp pixmaps
+- convert back to pdf
+- stamp pdf
 - re-create pixmaps
-- convert pixmaps into pdf
+- convert pixmaps into single pdf
 - zip into new archive
 - delete old archive and folder
 
 
-### Commants and Utilities used
+### Bash Commants and Utilities used
 - stat -c %U
 - stat -c %G
 - mkdir
@@ -40,16 +47,23 @@ Round Stamp It!
 - unzip
     - q = quiet
     - o - overwrite
+- rm
+    - r = recursive
+    - f = force
 - python3
 
 ### Python Libraries used
 - os
+- sys
+- pathlib
+- time
+- pprint
 - pymupdf
     - fitz
 
 ### Fitz Document Class
 
-#### Fitz Document Class Methods (relevant)
+#### [Fitz Document Class Methods (relevant)](https://pymupdf.readthedocs.io/en/latest/document.html)
 - Document.ez_save()
 - Document.save()
 - Document.saveIncr()
@@ -73,7 +87,7 @@ Round Stamp It!
 - Document.pages()
 - Document.search_page_for()
 
-#### Fitz DOcument Class Attributes (relevant)
+#### Fitz Document Class Attributes (relevant)
 - Document.name
 - Document.is_pdf
 - Document.is_closed
@@ -84,7 +98,7 @@ Round Stamp It!
 - Document.version_count
 
 
-### Fitz Page Class Methods and Attributes~
+### [Fitz Page Class Methods and Attributes](https://pymupdf.readthedocs.io/en/latest/page.html)
 
 - Page.get_pixmap(matrix=matrix)
 - Page.insert_image()
@@ -103,7 +117,7 @@ Round Stamp It!
     - Page.rect.height
 - Page.rotation
 
-### Fitz Pixmap
+### [Fitz Pixmap](https://pymupdf.readthedocs.io/en/latest/pixmap.html)
 
 - Pixmap.save()
 - Pixmap.pil_save()

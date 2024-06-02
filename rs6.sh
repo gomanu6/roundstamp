@@ -93,7 +93,8 @@ pip install --upgrade "${python_modules}"
 
 echo
 
-python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}" | tee -a "${log_file}"
+# python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}" | tee -a "${log_file}"
+python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
 
 # pip3 freeze > requirements.txt
 deactivate

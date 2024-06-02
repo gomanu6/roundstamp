@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 
-def create_filtered_files(src_dir, work_dir, dst_dir, type_of_file="pdf"):
+def create_filtered_files(src_dir: str, work_dir: str, dst_dir: str, type_of_file="pdf"):
     filtered_files = {}
 
     for path in Path(src_dir).rglob(f"*.{type_of_file}"):

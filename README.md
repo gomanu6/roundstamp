@@ -1,5 +1,7 @@
 # roundstamp
-Round Stamp It!
+- Round Stamp It!
+- Current Stable version: v0.6a
+- rs6.sh
 
 
 ### Fitz use cases

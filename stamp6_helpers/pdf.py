@@ -8,7 +8,7 @@ from helpers.dpprint import dpprint
 
 
 
-def convert_image_to_pdf(image, working_dir):
+def convert_image_to_pdf(image: str, working_dir: str):
     src_path = os.path.join(working_dir, image)
     doc = fitz.open()
     pdf_file_name = str(image).replace(".png", ".pdf")
@@ -32,7 +32,7 @@ def convert_image_to_pdf(image, working_dir):
 
 
 
-def convert_list_of_images_to_pdf(all_files):
+def convert_list_of_images_to_pdf(all_files: dict):
 
     print("    Converting Pixmaps to pdf")
     for key in all_files:

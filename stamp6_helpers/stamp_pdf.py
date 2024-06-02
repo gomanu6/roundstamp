@@ -16,7 +16,7 @@ dist_bottom = 100
 matrix=fitz.Matrix(2,2)
 
 
-def stamp_pdf_page(working_dir, pagename, stamp, stamp_width, stamp_height, dist_right, dist_bottom, matrix=fitz.Matrix(2,2)):
+def stamp_pdf_page(working_dir: str, pagename: str, stamp: str, stamp_width: int, stamp_height: int, dist_right: int, dist_bottom: int, matrix=fitz.Matrix(2,2)):
 
     old_page = os.path.join(working_dir, pagename)
     doc = fitz.open(old_page)
@@ -46,7 +46,7 @@ def stamp_pdf_page(working_dir, pagename, stamp, stamp_width, stamp_height, dist
 
 
 
-def stamp_list_of_pages(all_files, stamp):
+def stamp_list_of_pages(all_files: dict, stamp: str):
 
     for key in all_files:
         working_path = all_files[key]["working_path"]
@@ -62,7 +62,7 @@ def stamp_list_of_pages(all_files, stamp):
 
             
 
-def create_pdf(all_files):
+def create_pdf(all_files: dict):
       
     for key in all_files:
         working_path = all_files[key]["working_path"]

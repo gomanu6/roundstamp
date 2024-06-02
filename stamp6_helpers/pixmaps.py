@@ -9,7 +9,7 @@ from helpers.dpprint import dpprint
 # matrix_y = 2
 
 
-def create_pixmap_of_pdf(src_file, working_folder, matrix=fitz.Matrix(1,1)):
+def create_pixmap_of_pdf(src_file: str, working_folder: str, matrix=fitz.Matrix(1,1)):
     
     list_of_pixmaps = []
 
@@ -32,7 +32,7 @@ def create_pixmap_of_pdf(src_file, working_folder, matrix=fitz.Matrix(1,1)):
     return list_of_pixmaps
 
 
-def create_pixmaps(all_files, matrix):
+def create_pixmaps(all_files: dict, matrix):
 
     for key in all_files:
         src_dir = all_files[key]["filepath"]

@@ -16,6 +16,7 @@
 
 
 ### Features to add
+- Dockerize
 - logging
 - send logs by emails
 

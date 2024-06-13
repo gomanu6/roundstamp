@@ -28,7 +28,7 @@ stamp_height = 120
 dist_right = 140
 dist_bottom = 150
 
-pixmap_matrix=fitz.Matrix(2,2)
+pixmap_matrix=fitz.Matrix(1,1)
 stamp_matrix=fitz.Matrix(2,2)
 
 
@@ -50,6 +50,8 @@ pixmap_time = 0
 pixmap_to_pdf_time = 0
 total_stamp_time = 0
 total_final_pdf_time = 0
+
+print("------stamp6.py--------")
 
 for index, key in enumerate(all_files):
     file_start_time = time.time()

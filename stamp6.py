@@ -170,7 +170,7 @@ if total_time > 60:
     py_report_time = str(round(total_time / 60, 2))
 
 print("Total Time Taken = ", py_report_time, py_report_uom)
-# print("Thank you for using the Stamping Utility")
+# print("Thank you for using the Stamp 6 Utility")
 # dpprint(all_files)
 
 

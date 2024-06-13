@@ -19,6 +19,7 @@
 - Dockerize
 - logging
 - send logs by emails
+- Files not Processed - returns a list
 
 
 ### Stamp and Overwrite

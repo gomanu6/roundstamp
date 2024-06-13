@@ -35,6 +35,11 @@ stamp_matrix=fitz.Matrix(2,2)
 
 all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_folder)
 
+unprocessed_files = fl.files_not_processed(unstamped_folder)
+
+dpprint(unprocessed_files)
+
+sys.exit()
 ## Stamp 5 Way
 # pm.create_pixmaps(all_files)
 # pd.convert_list_of_images_to_pdf(all_files)

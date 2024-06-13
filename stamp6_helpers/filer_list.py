@@ -8,6 +8,7 @@ from pathlib import Path
 
 def create_filtered_files(src_dir: str, work_dir: str, dst_dir: str, type_of_file="pdf"):
     filtered_files = {}
+    unoperated_files = {}
 
     for path in Path(src_dir).rglob(f"*.{type_of_file}"):
         tmp_file = {}
@@ -22,6 +23,19 @@ def create_filtered_files(src_dir: str, work_dir: str, dst_dir: str, type_of_fil
     return filtered_files
 
 
+
+def files_not_processed(src_dir: str, type_of_file=".pdf"):
+    unprocessed_files = []
+
+    for path in Path(src_dir).rglob("*.*"):
+        filename, file_ext = os.path.splitext(str(path).lower())
+        # tmp_file = {}
+        if path.is_file():
+            if file_ext != type_of_file:
+                unprocessed_files.append(str(path))
+    
+    return unprocessed_files
+        
 
 
 

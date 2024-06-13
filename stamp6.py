@@ -28,7 +28,7 @@ stamp_height = 120
 dist_right = 140
 dist_bottom = 150
 
-pixmap_matrix=fitz.Matrix(1,1)
+pixmap_matrix=fitz.Matrix(2,2)
 stamp_matrix=fitz.Matrix(2,2)
 
 
@@ -37,13 +37,20 @@ all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_f
 
 unprocessed_files = fl.files_not_processed(unstamped_folder)
 
-sys.exit()
+
 ## Stamp 5 Way
 # pm.create_pixmaps(all_files)
 # pd.convert_list_of_images_to_pdf(all_files)
 # sp.stamp_list_of_pages(all_files, stamp_file)
 # sp.create_pdf(all_files)
 
+print("------stamp6.py--------")
+print("Debug Info: ")
+print("Script name: ", sys.argv[0])
+print("Initial Pixmap matrix: ", pixmap_matrix)
+print("Stamp Pixmap Matrix: ", stamp_matrix)
+
+# sys.exit()
 
 ## Stamp 6 Way
 total_files = len(all_files)
@@ -54,7 +61,7 @@ pixmap_to_pdf_time = 0
 total_stamp_time = 0
 total_final_pdf_time = 0
 
-print("------stamp6.py--------")
+
 
 for index, key in enumerate(all_files):
     file_start_time = time.time()

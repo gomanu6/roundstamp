@@ -4,6 +4,7 @@
 
 import os
 from pathlib import Path
+from pprint import pprint
 
 
 def create_filtered_files(src_dir: str, work_dir: str, dst_dir: str, type_of_file="pdf"):
@@ -33,7 +34,11 @@ def files_not_processed(src_dir: str, type_of_file=".pdf"):
         if path.is_file():
             if file_ext != type_of_file:
                 unprocessed_files.append(str(path))
-    
+    print("No of Files Not Processed: ", len(unprocessed_files))
+    print("---Below Files not Processed---")
+    for index, file in enumerate(unprocessed_files):
+        print(int(index +1), "--", file)
+
     return unprocessed_files
         
 

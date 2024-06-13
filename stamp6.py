@@ -37,8 +37,6 @@ all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_f
 
 unprocessed_files = fl.files_not_processed(unstamped_folder)
 
-dpprint(unprocessed_files)
-
 sys.exit()
 ## Stamp 5 Way
 # pm.create_pixmaps(all_files)

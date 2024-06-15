@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-# import os
+import os
 # import sys
 # from pathlib import Path
 # import fitz
-# from pprint import pprint
+from pprint import pprint
 
 # from helpers import add_numbers as am
 
@@ -13,12 +13,21 @@
 # unstamped_folder=sys.argv[2]
 # stamped_folder=sys.argv[3]
 # images_folder=sys.argv[4]
-
-
 # zipped_filename=sys.argv[4]
 
-print("Name: ")
+fol="/mnt/mounts/bansrv001/books"
 
-a = input()
 
-print(a)
+# tree = os.walk(fol)
+
+# pprint(list(tree))
+
+
+
+for (root,dirs,files) in os.walk(fol, topdown=True):
+        print (root)
+        print (dirs)
+        print (files)
+        print ('--------------------------------')
+
+

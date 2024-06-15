@@ -35,6 +35,8 @@ stamp_matrix=fitz.Matrix(2,2)
 
 all_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_folder)
 
+# pprint(all_files)
+# sys.exit()
 unprocessed_files = fl.files_not_processed(unstamped_folder)
 
 
@@ -153,28 +155,34 @@ for index, key in enumerate(all_files):
         print(f"  |--- File {index + 1} took {str(round(reported_time, 2))} {uom}")
 
 
-
-
-py_report_uom = "seconds"
-
-
-
-
-print()
-print("Total Files Stamped: ", total_files)
-print("Total Pages stamped: ", total_pages)
-print("Total Pixmap Time: ", str(round(pixmap_time, 2)), py_report_uom)
-print("Total Pixmap to PDF Time: ", str(round(pixmap_to_pdf_time, 2)), py_report_uom)
-print("Total Stamping Time: ", str(round(total_stamp_time, 2)), py_report_uom)
-print("Total Final PDF Time: ", str(round(total_final_pdf_time, 2)), py_report_uom)
-
-
 total_time = 0
 total_time += pixmap_time
 total_time += pixmap_to_pdf_time
 total_time += total_stamp_time
 total_time += total_final_pdf_time
 
+
+def get_uom(time):
+    uom = "seconds"
+    reported_time = str(round(time, 2))
+    if time > 60:
+        uom = "minutes"
+        reported_time = str(round(time / 60, 2))
+    return [reported_time, uom]
+
+
+print()
+print("Total Files Stamped: ", total_files)
+print("Total Pages stamped: ", total_pages)
+print("Total Pixmap Time: ", get_uom(pixmap_time)[0], get_uom(pixmap_time)[1])
+print("Total Pixmap to PDF Time: ", get_uom(pixmap_to_pdf_time)[0], get_uom(pixmap_to_pdf_time)[1])
+print("Total Stamping Time: ", get_uom(total_stamp_time)[0], get_uom(total_stamp_time)[1])
+print("Total Final PDF Time: ", get_uom(total_final_pdf_time)[0], get_uom(total_final_pdf_time)[1])
+
+
+
+
+py_report_uom = "seconds"
 py_report_time = str(round(total_time, 2))
 
 if total_time > 60:

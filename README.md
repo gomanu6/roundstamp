@@ -20,6 +20,7 @@
 - logging
 - send logs by emails
 - Files not Processed - returns a list
+- Convert and Stamp Image files (JPG | PNG)
 
 
 ### Stamp and Overwrite

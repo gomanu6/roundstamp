@@ -22,12 +22,42 @@ fol="/mnt/mounts/bansrv001/books"
 
 # pprint(list(tree))
 
+walked = os.walk(fol, topdown=True)
+
+all_files = {
+        "all_pdf_files": {},
+        "unprocessed_files": []
+}
+for (root, dirs, files) in walked:
+        # print (root)
+        # print (dirs)
+        # print (files)
+        # print ('--------------------------------')
+        for file in files:
+                # print(file)
+                file_path = os.path.join(root, file)
+                filename = file
+                destination_path = file_path.replace("mounts", "destination")
+                working_path = file_path.replace("mounts", "working")
+                
+                tmp_file = {}
+                if file.lower().endswith(".pdf"):
+                        tmp_file["filename"] = filename
+                        tmp_file["filepath"] = file_path
+                        tmp_file["dst_path"] = destination_path
+                        tmp_file["working_path"] = working_path
+                        all_files["all_pdf_files"][file_path] = tmp_file
+                else:
+                        all_files["unprocessed_files"].append(file_path)
 
 
-for (root,dirs,files) in os.walk(fol, topdown=True):
-        print (root)
-        print (dirs)
-        print (files)
-        print ('--------------------------------')
+        # print("***")
 
 
+pprint(all_files)
+# pprint(all_files["all_pdf_files"].keys())
+# for key in all_files["all_pdf_files"].keys():
+#         pprint(key)
+# print("**********")
+# for key in all_files["unprocessed_files"]:
+#         pprint(key)

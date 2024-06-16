@@ -18,62 +18,62 @@ from helpers.dpprint import dpprint
 # images_folder=sys.argv[4]
 # zipped_filename=sys.argv[4]
 
-fol="/mnt/mounts/bansrv001/books"
+fol="/mnt/mounts/bansrv001/unstamped_annexures"
 
+start_time = time.time()
 
 # tree = os.walk(fol)
 
 # pprint(list(tree))
 
-start_time = time.time()
 
-document_types = [ "*.doc", "*.docx", "*.txt"]
-doc_files = []
-pdf_files = []
+# document_types = [ "*.doc", "*.docx", "*.txt"]
+# doc_files = []
+# pdf_files = []
 
-for type in document_types:
-     for path in Path(fol).rglob(f"{type}"):
-          doc_files.append(str(path))
+# # for type in document_types:
+# #      for path in Path(fol).rglob(f"{type}"):
+# #           doc_files.append(str(path))
 
-for path in Path(fol).rglob("*.pdf"):
-     pdf_files.append(path)
+# for path in Path(fol).rglob("*.pdf"):
+#      pdf_files.append(path)
 
-dpprint(doc_files)
-dpprint(pdf_files)
-
+# dpprint(doc_files)
+# dpprint(pdf_files)
 
 
 
 
 
 
-# walked = os.walk(fol, topdown=True)
-# all_files = {
-#         "all_pdf_files": {},
-#         "document_files": {},
-#         "unprocessed_files": []
-# }
-# for (root, dirs, files) in walked:
-#         # print (root)
-#         # print (dirs)
-#         # print (files)
-#         # print ('--------------------------------')
-#         for file in files:
-#                 # print(file)
-#                 file_path = os.path.join(root, file)
-#                 filename = file
-#                 destination_path = file_path.replace("mounts", "destination")
-#                 working_path = file_path.replace("mounts", "working")
+
+walked = os.walk(fol, topdown=True)
+all_files = {
+        "all_pdf_files": {},
+        "document_files": {},
+        "unprocessed_files": []
+}
+for (root, dirs, files) in walked:
+        # print (root)
+        # print (dirs)
+        # print (files)
+        # print ('--------------------------------')
+        for file in files:
+                # print(file)
+                file_path = os.path.join(root, file)
+                filename = file
+                destination_path = file_path.replace("mounts", "destination")
+                working_path = file_path.replace("mounts", "working")
                 
-#                 tmp_file = {}
-#                 if file.lower().endswith(".pdf"):
-#                         tmp_file["filename"] = filename
-#                         tmp_file["filepath"] = file_path
-#                         tmp_file["dst_path"] = destination_path
-#                         tmp_file["working_path"] = working_path
-#                         all_files["all_pdf_files"][file_path] = tmp_file
-#                 else:
-#                         all_files["unprocessed_files"].append(file_path)
+                tmp_file = {}
+                if file.lower().endswith(".pdf"):
+                        tmp_file["filename"] = filename
+                        tmp_file["filepath"] = file_path
+                        tmp_file["dst_path"] = destination_path
+                        tmp_file["working_path"] = working_path
+                        all_files["all_pdf_files"][file_path] = tmp_file
+                else:
+                        all_files["unprocessed_files"].append(file_path)
 
 
 #         # print("***")
@@ -91,7 +91,5 @@ dpprint(pdf_files)
 
 
 end_time = time.time()
-
 time_taken = end_time - start_time
-
-print("It took ", time_taken, " seconds.")
+print("It took ", round(time_taken, 4), " seconds.")

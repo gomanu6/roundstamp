@@ -5,7 +5,9 @@ import os
 from pathlib import Path
 # import fitz
 from pprint import pprint
+import time
 
+from helpers.dpprint import dpprint
 
 # from helpers import add_numbers as am
 
@@ -23,14 +25,25 @@ fol="/mnt/mounts/bansrv001/books"
 
 # pprint(list(tree))
 
+start_time = time.time()
+
 document_types = [ "*.doc", "*.docx", "*.txt"]
 doc_files = []
+pdf_files = []
 
 for type in document_types:
      for path in Path(fol).rglob(f"{type}"):
           doc_files.append(str(path))
 
-pprint(doc_files)
+for path in Path(fol).rglob("*.pdf"):
+     pdf_files.append(path)
+
+dpprint(doc_files)
+dpprint(pdf_files)
+
+
+
+
 
 
 
@@ -75,3 +88,10 @@ pprint(doc_files)
 # print("**********")
 # for key in all_files["unprocessed_files"]:
 #         pprint(key)
+
+
+end_time = time.time()
+
+time_taken = end_time - start_time
+
+print("It took ", time_taken, " seconds.")

@@ -26,9 +26,10 @@ dst_folder="${destination_folder}"
 
 round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
 
+env_base="${env_base_path}"
+env_path="${env_base}/${python_env_name}"
 
-
-echo "Version 0.6a"
+echo "Version 0.8a"
 
 ## Checking Input File characteristics
 echo "**** Checking Input File ****"
@@ -44,17 +45,14 @@ else
     exit 1
 fi
 
-log_file_name="${zip_filename}__${todays_date}__${script_run_time}.txt"
-log_file="${base_folder}/${log_file_name}"
-
-# touch "${log_file}"
-
 ## Creating base working folder
 echo
 echo "**** Creating Base Folder ****"
 if [ -d "${base_folder}" ]; then
     echo "${p} Deleting Old Data Folder and making a new one"
     rm -rf "${base_folder}"
+    dirs_create "${base_folder}"
+else
     if mkdir -p "${base_folder}"; then
         echo "${p} Created Working Folder --> ${base_folder}"
     else
@@ -62,6 +60,13 @@ if [ -d "${base_folder}" ]; then
         exit 2
     fi
 fi
+
+
+log_file_name="${zip_filename}__${todays_date}__${script_run_time}.txt"
+log_file="${base_folder}/${log_file_name}"
+
+touch "${log_file}"
+
 
 ## Creating internal folder structure
 echo
@@ -87,8 +92,8 @@ echo "${p} Local Installed Python Version is: $(python3 --version)"
 echo
 
 echo "---> Handing over to Python"
-python3 -m venv "${python_env_name}"
-source "${python_env_name}/bin/activate"
+python3 -m venv "${env_path}"
+source "${env_path}/bin/activate"
 pip install --upgrade "${python_modules}"
 
 echo
@@ -148,5 +153,5 @@ chown -R "${o_user}:${o_group}" "${dst_folder}"
 echo
 echo "${p} Performing Cleanup"
 rm -rf "${base_folder}"
-rm -rf "./${python_env_name}/"
+rm -rf "./${env_path}"
 echo "${p} Cleanup Complete"

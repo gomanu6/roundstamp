@@ -10,10 +10,10 @@ import time
 
 from helpers.dpprint import dpprint
 
-import stamp6_helpers.filer_list as fl
-import stamp6_helpers.pixmaps as pm
-import stamp6_helpers.pdf as pd
-import stamp6_helpers.stamp_pdf as sp
+import stamp8_helpers.filer_list as fl
+import stamp8_helpers.pixmaps as pm
+import stamp8_helpers.pdf as pd
+import stamp8_helpers.stamp_pdf as sp
 
 stamp_file = sys.argv[1]
 # print("Stamp File is: ", stamp_file)
@@ -46,9 +46,8 @@ unprocessed_files = fl.files_not_processed(unstamped_folder)
 # sp.stamp_list_of_pages(all_files, stamp_file)
 # sp.create_pdf(all_files)
 
-print("------stamp6.py--------")
+print(f"-------{sys.argv[0]}-------")
 print("Debug Info: ")
-print("Script name: ", sys.argv[0])
 print("Initial Pixmap matrix: ", pixmap_matrix)
 print("Stamp Pixmap Matrix: ", stamp_matrix)
 

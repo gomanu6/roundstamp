@@ -18,7 +18,7 @@ from helpers.dpprint import dpprint
 # images_folder=sys.argv[4]
 # zipped_filename=sys.argv[4]
 
-fol="/mnt/mounts/bansrv001/unstamped_annexures"
+fol="/mnt/mounts/bansrv001/annexures-divine-thermal"
 
 start_time = time.time()
 
@@ -46,7 +46,7 @@ start_time = time.time()
 
 
 
-
+### This is Faster ### 
 walked = os.walk(fol, topdown=True)
 all_files = {
         "all_pdf_files": {},

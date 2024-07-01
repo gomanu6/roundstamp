@@ -21,6 +21,7 @@
 - Convert and Stamp Image files (JPG | PNG)
 - logging
 - send logs by emails
+- Accept a Folder or a Zip File
 - Files not Processed - returns a list
 
 

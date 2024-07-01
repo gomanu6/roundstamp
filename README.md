@@ -97,6 +97,8 @@
 
 #### Fitz Document Class Attributes (relevant)
 - Document.name
+- Document.needs_pass
+- Document.is_encrypted
 - Document.is_pdf
 - Document.is_closed
 - Document.is_dirty = PDF only: has document been changed yet?

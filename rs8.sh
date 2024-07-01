@@ -155,3 +155,4 @@ echo "${p} Performing Cleanup"
 rm -rf "${base_folder}"
 rm -rf "./${env_path}"
 echo "${p} Cleanup Complete"
+

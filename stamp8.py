@@ -36,14 +36,14 @@ stamp_matrix=fitz.Matrix(2,2)
 
 
 pdf_files, protected_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_folder)
-pprint(pdf_files)
+# pprint(pdf_files)
 # pprint(unoperated_files)
 
 # protected_files = fl.analyse_files(pdf_files)
 # pprint(protected_files)
 
 unprocessed_files = fl.files_not_processed(unstamped_folder)
-sys.exit()
+# sys.exit()
 
 
 ## Stamp 5 Way

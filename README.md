@@ -1,7 +1,7 @@
 # roundstamp
 - Round Stamp It!
-- Current Stable version: v0.6a
-- rs6.sh
+- Current Stable version: v0.6a, 0.8a with filtering for password protected files
+- rs6.sh, rs8.sh
 
 
 ### Fitz use cases

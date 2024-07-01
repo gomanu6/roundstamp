@@ -42,7 +42,7 @@
 - delete old archive and folder
 
 
-### Bash Commants and Utilities used
+### Bash Commands and Utilities used
 - stat -c %U
 - stat -c %G
 - mkdir

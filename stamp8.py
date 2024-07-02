@@ -59,7 +59,7 @@ print("Stamp Pixmap Matrix: ", stamp_matrix)
 
 # sys.exit()
 
-## Stamp 6 Way
+## Stamp 8 Way
 total_files = len(pdf_files)
 total_pages = 0
 
@@ -68,7 +68,7 @@ pixmap_to_pdf_time = 0
 total_stamp_time = 0
 total_final_pdf_time = 0
 
-
+files_with_errors = {}
 
 for index, key in enumerate(pdf_files):
     file_start_time = time.time()
@@ -82,7 +82,12 @@ for index, key in enumerate(pdf_files):
     print()
     print(f"Processing File {index + 1} of {total_files}", "File:", filename, "in ", os.path.basename(os.path.dirname(filepath)))
     pixmap_start_time = time.time()
-    file_pixmaps = pm.create_pixmap_of_pdf(filepath, working_dir, matrix=pixmap_matrix)
+    try:
+        file_pixmaps = pm.create_pixmap_of_pdf(filepath, working_dir, matrix=pixmap_matrix)
+    except (ValueError):
+        files_with_errors[filepath] = ValueError
+        print("Unable to Open File for creating Pixmaps")
+        continue
     pdf_files[key]["pixmap_pages"] = file_pixmaps
     num_pages = len(pdf_files[key]["pixmap_pages"])
     print(f"  -- This file has {num_pages} Pages")
@@ -184,8 +189,11 @@ print("Total Pixmap to PDF Time: ", get_uom(pixmap_to_pdf_time)[0], get_uom(pixm
 print("Total Stamping Time: ", get_uom(total_stamp_time)[0], get_uom(total_stamp_time)[1])
 print("Total Final PDF Time: ", get_uom(total_final_pdf_time)[0], get_uom(total_final_pdf_time)[1])
 
-
-
+### Printing FIles with Errors
+print()
+print("----- Following files with errors ----")
+pprint(files_with_errors)
+print()
 
 py_report_uom, py_report_time = get_uom(total_time)
 # py_report_time = str(round(total_time, 2))

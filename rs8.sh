@@ -126,12 +126,15 @@ echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
 # echo "It took ${TOTALTIME} ${REPORT_UOM} to complete ..."
 echo
 
+
+### Not required for Docker
 ### Deleting Old Destination Folder
 if [ -d "${dst_folder}" ]; then
     echo "${p} deleting previous destination folder"
     rm -rf "${dst_folder}"
 fi
 
+### Not required for Docker
 ### Creating Destination Folder
 dirs_create "${dst_folder}"
 
@@ -142,6 +145,8 @@ cd "${final_stamped_folder}"
 zip -rq "${dst_folder}/stamped_annexures-${todays_date}__${script_run_time}.zip" .
 cd ../..
 cp "${log_file}" "${dst_folder}/"
+
+### Not required for Docker
 chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 
@@ -149,6 +154,7 @@ chown -R "${o_user}:${o_group}" "${dst_folder}"
 # cp -r "${base_folder}" "${dst_folder}"
 # chown -R "${o_user}:${o_group}" "${dst_folder}"
 
+### Not required for Docker
 ### Cleanup
 echo
 echo "${p} Performing Cleanup"

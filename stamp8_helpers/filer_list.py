@@ -49,7 +49,8 @@ def create_filtered_files(src_dir: str, work_dir: str, dst_dir: str, type_of_fil
         print("----End of Protected Files----")
         print()
     else:
-        print("--- No protected Files found ---")
+        print("--- There were No protected Files found ---")
+        print()
 
 
 

@@ -12,6 +12,8 @@ script_run_time=$(date +%H-%M)
 
 . ./rs8.config
 . ./stamp8_helpers/dirs_create.sh
+. ./stamp8_helpers/check_time.sh
+
 
 
 unstamped_zipfile="${annexure_file}"
@@ -110,12 +112,14 @@ deactivate
 ENDTIME=$(date +%s)
 echo
 
+check_time $STARTTIME $ENDTIME
+
 # TOTALTIME=$(($ENDTIME - $STARTTIME))
 
 
 # REPORT_UOM="seconds"
 # REPORT_TIME="${TOTALTIME}"
-echo "It took $(($ENDTIME - $STARTTIME)) seconds to complete ..."
+# echo "It took $(($ENDTIME - $STAR   TTIME)) seconds to complete ..."
 
 # if [[ $TOTALTIME ge 60 ]]; then
 #     REPORT_TIME=$(($TOTALTIME / 60))

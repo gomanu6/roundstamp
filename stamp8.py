@@ -14,6 +14,8 @@ import stamp8_helpers.filer_list as fl
 import stamp8_helpers.pixmaps as pm
 import stamp8_helpers.pdf as pd
 import stamp8_helpers.stamp_pdf as sp
+import stamp8_helpers.general as gen
+
 
 stamp_file = sys.argv[1]
 # print("Stamp File is: ", stamp_file)
@@ -31,9 +33,10 @@ dist_bottom = 150
 pixmap_matrix=fitz.Matrix(2,2)
 stamp_matrix=fitz.Matrix(2,2)
 
+INDIVIDUAL_PROCESS_TIME = True
+# PYTHON_SCRIPT_TIME = True
 
-
-
+# py_start_time = time.time()
 
 pdf_files, protected_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_folder)
 # pprint(pdf_files)
@@ -63,10 +66,15 @@ print("Stamp Pixmap Matrix: ", stamp_matrix)
 total_files = len(pdf_files)
 total_pages = 0
 
+
+
+
 pixmap_time = 0
 pixmap_to_pdf_time = 0
 total_stamp_time = 0
 total_final_pdf_time = 0
+total_time = 0
+
 
 files_with_errors = []
 
@@ -92,9 +100,11 @@ for index, key in enumerate(pdf_files):
     num_pages = len(pdf_files[key]["pixmap_pages"])
     print(f"  -- This file has {num_pages} Pages")
     pixmap_end_time = time.time()
-    pixmap_time_taken = pixmap_end_time - pixmap_start_time
-    pixmap_time += pixmap_time_taken
-    print(f"       |__ Created Pixmaps --- {str(round(pixmap_time_taken, 2))} seconds")
+    gen.report_time("       |__ Created Pixmaps in ---", pixmap_start_time, pixmap_end_time, report_time = INDIVIDUAL_PROCESS_TIME)
+    # pixmap_time_taken = pixmap_end_time - pixmap_start_time
+    # pixmap_time += pixmap_time_taken
+    total_time += pixmap_time
+    # print(f"       |__ Created Pixmaps --- {str(round(pixmap_time_taken, 2))} seconds")
     
     ### Convert Pixmap to PDF
     pixmap_files = pdf_files[key]["pixmap_pages"]
@@ -165,8 +175,6 @@ for index, key in enumerate(pdf_files):
         print(f"  |--- File {index + 1} took {str(round(reported_time, 2))} {uom}")
 
 
-total_time = 0
-total_time += pixmap_time
 total_time += pixmap_to_pdf_time
 total_time += total_stamp_time
 total_time += total_final_pdf_time
@@ -184,12 +192,14 @@ def get_uom(time):
 print()
 print("Total Files Stamped: ", total_files)
 print("Total Pages stamped: ", total_pages)
-print("Total Pixmap Time: ", get_uom(pixmap_time)[0], get_uom(pixmap_time)[1])
-print("Total Pixmap to PDF Time: ", get_uom(pixmap_to_pdf_time)[0], get_uom(pixmap_to_pdf_time)[1])
-print("Total Stamping Time: ", get_uom(total_stamp_time)[0], get_uom(total_stamp_time)[1])
-print("Total Final PDF Time: ", get_uom(total_final_pdf_time)[0], get_uom(total_final_pdf_time)[1])
+print()
+# print("Total Pixmap Time: ", get_uom(pixmap_time)[0], get_uom(pixmap_time)[1])
+# print("Total Pixmap to PDF Time: ", get_uom(pixmap_to_pdf_time)[0], get_uom(pixmap_to_pdf_time)[1])
+# print("Total Stamping Time: ", get_uom(total_stamp_time)[0], get_uom(total_stamp_time)[1])
+# print("Total Final PDF Time: ", get_uom(total_final_pdf_time)[0], get_uom(total_final_pdf_time)[1])
 
-### Printing FIles with Errors
+
+### Printing Files with Errors
 print()
 print("----- Following files with errors ----")
 for index, file in enumerate(files_with_errors):
@@ -204,7 +214,7 @@ if total_time > 60:
     py_report_uom = "minutes"
     py_report_time = str(round(total_time / 60, 2))
 
-print("Total Time Taken = ", py_report_time, py_report_uom)
+print("Total Time Taken by Python = ", py_report_time, py_report_uom)
 # print("Thank you for using the Stamp 6 Utility")
 # dpprint(pdf_files)
 

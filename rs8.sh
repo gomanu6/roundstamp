@@ -10,6 +10,7 @@ o_group=""
 todays_date=$(date +%F)
 script_run_time=$(date +%H-%M)
 
+### Convert to absolute paths for Docker
 . ./rs8.config
 . ./stamp8_helpers/dirs_create.sh
 . ./stamp8_helpers/check_time.sh
@@ -31,7 +32,7 @@ round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
 env_base="${env_base_path}"
 env_path="${env_base}/${python_env_name}"
 
-echo "Version 0.8a"
+echo "Version 0.8b"
 
 ## Checking Input File characteristics
 echo "**** Checking Input File ****"

@@ -76,7 +76,7 @@ total_final_pdf_time = 0
 total_time = 0
 
 
-files_with_errors = []
+files_with_errors = {}
 
 for index, key in enumerate(pdf_files):
     file_start_time = time.time()
@@ -92,8 +92,9 @@ for index, key in enumerate(pdf_files):
     pixmap_start_time = time.time()
     try:
         file_pixmaps = pm.create_pixmap_of_pdf(filepath, working_dir, matrix=pixmap_matrix)
-    except:
-        files_with_errors.append(filepath)
+    except Exception as e:
+        # files_with_errors.append(filepath)
+        files_with_errors[filepath] = e
         print("--- ERROR --- Unable to Open File for creating Pixmaps")
         continue
     pdf_files[key]["pixmap_pages"] = file_pixmaps
@@ -202,8 +203,9 @@ print()
 ### Printing Files with Errors
 print()
 print("----- Following files with errors ----")
-for index, file in enumerate(files_with_errors):
-    print(int(index + 1), "--", file)
+# for index, file in enumerate(files_with_errors):
+#     print(int(index + 1), "--", file)
+pprint(files_with_errors)
 print("----- End of files with errors ----")
 print()
 

@@ -42,15 +42,15 @@ def create_filtered_files(src_dir: str, work_dir: str, dst_dir: str, type_of_fil
         filtered_files[str(path)] = tmp_file
 
 
-    if len(protected_files) > 0:
-        print("----Protected Files----")
-        for index, file in enumerate(protected_files):
-            print(int(index + 1), "--", file)
-        print("----End of Protected Files----")
-        print()
-    else:
-        print("--- There were No protected Files found ---")
-        print()
+    # if len(protected_files) > 0:
+    #     print("----Protected Files----")
+    #     for index, file in enumerate(protected_files):
+    #         print(int(index + 1), "--", file)
+    #     print("----End of Protected Files----")
+    #     print()
+    # else:
+    #     print("--- There were No protected Files found ---")
+    #     print()
 
 
 

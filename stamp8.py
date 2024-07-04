@@ -201,13 +201,14 @@ print()
 
 
 ### Printing Files with Errors
-print()
-print("----- Following files with errors ----")
-for index, file in enumerate(files_with_errors):
-    print(int(index + 1), "--", file, "-->", files_with_errors[file])
-# pprint(files_with_errors)
-print("----- End of files with errors ----")
-print()
+if files_with_errors:
+    print()
+    print("----- Following files with errors ----")
+    for index, file in enumerate(files_with_errors):
+        print(int(index + 1), "--", file, "-->", files_with_errors[file])
+    # pprint(files_with_errors)
+    print("----- End of files with errors ----")
+    print()
 
 py_report_uom, py_report_time = get_uom(total_time)
 # py_report_time = str(round(total_time, 2))

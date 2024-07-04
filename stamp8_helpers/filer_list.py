@@ -72,8 +72,8 @@ def files_not_processed(src_dir: str, type_of_file: str =".pdf"):
                 unprocessed_files.append(str(path))
     print("No of Files Not Processed: ", len(unprocessed_files))
     print("---Below Files not Processed---")
-    for index, file in enumerate(unprocessed_files):
-        print(int(index +1), "--", file)
+    for index, file in enumerate(unprocessed_files, start=1):
+        print(int(index), "--", file)
     print("--- End of Files not Processed ---")
 
     return unprocessed_files

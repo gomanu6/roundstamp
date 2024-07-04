@@ -203,9 +203,9 @@ print()
 ### Printing Files with Errors
 print()
 print("----- Following files with errors ----")
-# for index, file in enumerate(files_with_errors):
-#     print(int(index + 1), "--", file)
-pprint(files_with_errors)
+for index, file in enumerate(files_with_errors):
+    print(int(index + 1), "--", file, "-->", files_with_errors[file])
+# pprint(files_with_errors)
 print("----- End of files with errors ----")
 print()
 

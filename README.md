@@ -16,13 +16,14 @@
 
 
 ### Features to add
-- Dockerize
-- Error Checking and not crashing
-- Convert and Stamp Image files (JPG | PNG)
+- Add a Docker Compose File
 - logging
 - send logs by emails
 - Accept a Folder or a Zip File
+- Convert and Stamp Image files (JPG | PNG)
+- Dockerize - requires minor changes to run as docker command
 - Files not Processed - returns a list
+- Error Checking and not crashing - logs errors without crashing
 
 
 ### Stamp and Overwrite

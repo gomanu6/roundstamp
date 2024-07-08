@@ -16,6 +16,7 @@
 
 
 ### Features to add
+- Add a Docker Build File
 - Add a Docker Compose File
 - logging
     - [Python - Logging Library](https://docs.python.org/3/library/logging.html)

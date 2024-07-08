@@ -18,7 +18,7 @@ import stamp8_helpers.stamp_pdf as sp
 import stamp8_helpers.general as gen
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s:%(message)s')
 
 stamp_file = sys.argv[1]
 # print("Stamp File is: ", stamp_file)

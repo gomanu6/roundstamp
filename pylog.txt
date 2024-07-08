@@ -1,8 +1,0 @@
-DEBUG:-------stamp8.py-------
-DEBUG:Debug Info: 
-DEBUG:Initial Pixmap Matrix: {pixmap_matrix}
-DEBUG:Stamp Pixmap Matrix: {stamp_matrix}
-DEBUG:-------stamp8.py-------
-DEBUG:Debug Info: 
-DEBUG:Initial Pixmap Matrix: {pixmap_matrix}
-DEBUG:Stamp Pixmap Matrix: {stamp_matrix}

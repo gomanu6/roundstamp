@@ -81,6 +81,7 @@ dirs_create "${working_stamps_folder}" "${working_unstamped_folder}" "${working_
 echo
 cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}/"
 
+
 ## Unzipping Files
 echo
 echo "${p} Unzipping files"
@@ -134,14 +135,15 @@ echo
 
 ### Not required for Docker
 ### Deleting Old Destination Folder
-if [ -d "${dst_folder}" ]; then
-    echo "${p} deleting previous destination folder"
-    rm -rf "${dst_folder}"
-fi
+# if [ -d "${dst_folder}" ]; then
+#     echo "${p} deleting previous destination folder"
+#     rm -rf "${dst_folder}"
+# fi
+
 
 ### Not required for Docker
 ### Creating Destination Folder
-dirs_create "${dst_folder}"
+# dirs_create "${dst_folder}"
 
 
 ### Copy results

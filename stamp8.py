@@ -7,6 +7,7 @@ from pathlib import Path
 import fitz
 from pprint import pprint
 import time
+import logging
 
 from helpers.dpprint import dpprint
 
@@ -55,10 +56,10 @@ unprocessed_files = fl.files_not_processed(unstamped_folder)
 # sp.stamp_list_of_pages(pdf_files, stamp_file)
 # sp.create_pdf(pdf_files)
 
-print(f"-------{sys.argv[0]}-------")
-print("Debug Info: ")
-print("Initial Pixmap matrix: ", pixmap_matrix)
-print("Stamp Pixmap Matrix: ", stamp_matrix)
+logging.debug(f"-------{sys.argv[0]}-------")
+logging.debug("Debug Info: ")
+logging.debug("Initial Pixmap Matrix: {pixmap_matrix}")
+logging.debug("Stamp Pixmap Matrix: {stamp_matrix}")
 
 # sys.exit()
 

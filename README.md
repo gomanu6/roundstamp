@@ -18,6 +18,8 @@
 ### Features to add
 - Add a Docker Compose File
 - logging
+    - [Python - Logging Library](https://docs.python.org/3/library/logging.html)
+    - [Python - Logging How To](https://docs.python.org/3/howto/logging.html)
 - send logs by emails
 - Accept a Folder or a Zip File
 - Convert and Stamp Image files (JPG | PNG)

@@ -149,7 +149,7 @@ echo
 ### Copy results
 echo "${p} Creating Zip ... "
 cd "${final_stamped_folder}"
-zip -rq "${dst_folder}/stamped_annexures-${todays_date}__${script_run_time}.zip" .
+zip -rq "${dst_folder}/ASC-10499-uma-stamped_${todays_date}__${script_run_time}.zip" .
 cd ../..
 cp "${log_file}" "${dst_folder}/"
 

@@ -146,3 +146,42 @@
 - [Virtual Environments](https://ioflood.com/blog/python-activate-venv/)
 - [How to Run a Python CLI Tool Inside a Docker Container](https://dteslya.engineer/blog/2022/07/14/how-to-run-a-python-cli-tool-inside-a-docker-container/)
 - [Dockerize Your Python Command-Line Program](https://medium.com/swlh/dockerize-your-python-command-line-program-6a273f5c5544)
+
+
+
+### Docker Config
+
+#### Dockerfile
+
+FROM ubuntu:latest
+
+ENV TZ="Asia/Kolkata"
+
+RUN apt update
+RUN apt install -y python3 python3-venv python3-pip zip unzip vim bash dos2unix
+
+WORKDIR /app
+
+
+CMD [ "/bin/bash", "/app/start.sh"]
+
+#### Docker Compose, compose.yaml
+
+services:
+  ub:
+    image: stampit
+    build: .
+    container_name: stampit
+    volumes:
+    - ./input:/input
+    - ./output:/output:rw
+    - ./roundstamp:/app
+    entrypoint: ["/bin/bash", "/app/start.sh"]
+
+
+
+
+
+
+
+

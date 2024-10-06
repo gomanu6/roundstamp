@@ -11,9 +11,9 @@ todays_date=$(date +%F)
 script_run_time=$(date +%H-%M)
 
 ### Convert to absolute paths for Docker
-. ./rs8.config
-. ./stamp8_helpers/dirs_create.sh
-. ./stamp8_helpers/check_time.sh
+. /app/docker_stamp.config
+. /app/stamp8_helpers/dirs_create.sh
+. /app/stamp8_helpers/check_time.sh
 
 
 
@@ -32,7 +32,7 @@ round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
 env_base="${env_base_path}"
 env_path="${env_base}/${python_env_name}"
 
-echo "Version 0.8b"
+echo "Version 0.8c-docker"
 
 ## Checking Input File characteristics
 echo "**** Checking Input File ****"
@@ -149,23 +149,24 @@ echo
 ### Copy results
 echo "${p} Creating Zip ... "
 cd "${final_stamped_folder}"
-zip -rq "${dst_folder}/ASC-10499-uma-stamped_${todays_date}__${script_run_time}.zip" .
+zip -rq "${dst_folder}/stamped_annexures-${todays_date}__${script_run_time}.zip" .
 cd ../..
 cp "${log_file}" "${dst_folder}/"
+echo "${p} Copied Zip file to output folder ... "
 
 ### Not required for Docker
-chown -R "${o_user}:${o_group}" "${dst_folder}"
+# chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 
-### For testing only (Copy wcontents of working folder)
+### For testing only (Copy contents of working folder)
 # cp -r "${base_folder}" "${dst_folder}"
 # chown -R "${o_user}:${o_group}" "${dst_folder}"
 
 ### Not required for Docker
 ### Cleanup
-echo
-echo "${p} Performing Cleanup"
-rm -rf "${base_folder}"
-rm -rf "./${env_path}"
-echo "${p} Cleanup Complete"
+# echo
+# echo "${p} Performing Cleanup"
+# rm -rf "${base_folder}"
+# rm -rf "./${env_path}"
+# echo "${p} Cleanup Complete"
 

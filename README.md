@@ -173,8 +173,9 @@ services:
     build: .
     container_name: stampit
     volumes:
-    - ./input:/input
+    - ./input:/input:ro
     - ./output:/output:rw
+    - ./wip:wip:rw
     - ./roundstamp:/app
     entrypoint: ["/bin/bash", "/app/start.sh"]
 

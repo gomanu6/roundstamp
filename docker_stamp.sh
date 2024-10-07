@@ -10,6 +10,9 @@ o_group=""
 todays_date=$(date +%F)
 script_run_time=$(date +%H-%M)
 
+echo ${todays_date}
+echo ${script_run_time}
+
 ### Convert to absolute paths for Docker
 . /app/docker_stamp.config
 . /app/stamp8_helpers/dirs_create.sh

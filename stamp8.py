@@ -49,8 +49,8 @@ stamp_height = config['Stamp Options']['stamp_height']
 dist_right = config['Stamp Options']['dist_from_right']
 dist_bottom = config['Stamp Options']['dist_from_bottom']
 
-pixmap_matrix = fitz.Matrix(config['Resolution']['pixmap_x'],config['Resolution']['pixmap_y'])
-stamp_matrix = fitz.Matrix(config['Resolution']['pixmap_x'],config['Resolution']['pixmap_y'])
+pixmap_matrix = fitz.Matrix(int(config['Resolution']['pixmap_x']),int(config['Resolution']['pixmap_y']))
+stamp_matrix = fitz.Matrix(int(config['Resolution']['pixmap_x']),int(config['Resolution']['pixmap_y']))
 
 
 INDIVIDUAL_PROCESS_TIME = True
@@ -58,8 +58,9 @@ INDIVIDUAL_PROCESS_TIME = True
 
 # py_start_time = time.time()
 
+print(input_zip_file)
 
-if Path(input_zip_file).is_file() and os.path.getsize(input_zip_file) > 0:
+if Path(input_zip_file).is_file():
     print("File exists")
     file_uid = os.stat(input_zip_file).st_uid
     file_gid = os.stat(input_zip_file).st_gid
@@ -67,6 +68,8 @@ if Path(input_zip_file).is_file() and os.path.getsize(input_zip_file) > 0:
     file_grpname = grp.getgrgid(file_gid)[0]
 
     input_filename = os.path.basename(input_zip_file)
+
+    print()
 
     shutil.unpack_archive(input_zip_file, unstamped_folder)
     print("Files unzipped")
@@ -175,7 +178,7 @@ for index, key in enumerate(pdf_files):
     # print("    Stamping PDF files")
     stamp_start_time = time.time()
     for unstamped_file in unstamped_pdf_files:
-        stamped_page = sp.stamp_pdf_page(working_dir, unstamped_file, stamp_file, stamp_width, stamp_height, dist_right, dist_bottom, stamp_matrix)
+        stamped_page = sp.stamp_pdf_page(working_dir, unstamped_file, stamp_file, int(stamp_width), int(stamp_height), int(dist_right), int(dist_bottom), stamp_matrix)
         stamped_pages.append(stamped_page)
     pdf_files[key]["unstamped_pdf_files"] = []
     pdf_files[key]["stamped_images"] = stamped_pages
@@ -268,5 +271,5 @@ print("Total Time Taken by Python = ", py_report_time, py_report_uom)
 
 
 ### Zipping the File
-output_file = "{output_folder}/{input_filename}---{script_start_time}"
+output_file = f"{output_folder}/{input_filename}--{script_start_time}"
 shutil.make_archive(output_file, 'zip', stamped_folder)

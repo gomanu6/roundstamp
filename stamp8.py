@@ -2,12 +2,18 @@
 
 
 import os
+import pwd
+import grp
 import sys
 from pathlib import Path
+# from zipfile import ZipFile
+import shutil
 import fitz
 from pprint import pprint
 import time
 import logging
+import datetime
+from configparser import ConfigParser, ExtendedInterpolation
 
 from helpers.dpprint import dpprint
 
@@ -20,26 +26,58 @@ import stamp8_helpers.general as gen
 
 logging.basicConfig(filename="log.txt", force=True, filemode="a", level=logging.DEBUG, format='%(levelname)s:%(message)s')
 
-stamp_file = sys.argv[1]
-# print("Stamp File is: ", stamp_file)
-unstamped_folder = sys.argv[2]
-working_folder = sys.argv[3]
-stamped_folder = sys.argv[4]
 
 
-stamp_width = 120
-stamp_height = 120
+script_start_time = datetime.datetime.today().strftime('%Y-%m-%d__%H:%M:%S')
 
-dist_right = 140
-dist_bottom = 150
+config = ConfigParser(interpolation=ExtendedInterpolation())
+config.read('stamp.config')
 
-pixmap_matrix=fitz.Matrix(2,2)
-stamp_matrix=fitz.Matrix(2,2)
+input_zip_file = config['Inputs']['annexure_file']
+
+stamp_file = config['Inputs']['round_stamp']
+unstamped_folder = config['Working Paths']['wip_unstamped_folder']
+working_folder = config['Working Paths']['wip_folder']
+stamped_folder = config['Working Paths']['wip_stamped_folder']
+
+output_folder = config['Output Paths']['destination_path']
+
+
+stamp_width = config['Stamp Options']['stamp_width']
+stamp_height = config['Stamp Options']['stamp_height']
+
+dist_right = config['Stamp Options']['dist_from_right']
+dist_bottom = config['Stamp Options']['dist_from_bottom']
+
+pixmap_matrix = fitz.Matrix(config['Resolution']['pixmap_x'],config['Resolution']['pixmap_y'])
+stamp_matrix = fitz.Matrix(config['Resolution']['pixmap_x'],config['Resolution']['pixmap_y'])
+
 
 INDIVIDUAL_PROCESS_TIME = True
 # PYTHON_SCRIPT_TIME = True
 
 # py_start_time = time.time()
+
+
+if Path(input_zip_file).is_file() and os.path.getsize(input_zip_file) > 0:
+    print("File exists")
+    file_uid = os.stat(input_zip_file).st_uid
+    file_gid = os.stat(input_zip_file).st_gid
+    file_username = pwd.getpwuid(file_uid)[0]
+    file_grpname = grp.getgrgid(file_gid)[0]
+
+    input_filename = os.path.basename(input_zip_file)
+
+    shutil.unpack_archive(input_zip_file, unstamped_folder)
+    print("Files unzipped")
+else:
+    print("Invalid File .. Exiting")
+    sys.exit()
+
+
+
+
+
 
 pdf_files, protected_files = fl.create_filtered_files(unstamped_folder, working_folder, stamped_folder)
 # pprint(pdf_files)
@@ -52,11 +90,6 @@ unprocessed_files = fl.files_not_processed(unstamped_folder)
 # sys.exit()
 
 
-## Stamp 5 Way
-# pm.create_pixmaps(pdf_files)
-# pd.convert_list_of_images_to_pdf(pdf_files)
-# sp.stamp_list_of_pages(pdf_files, stamp_file)
-# sp.create_pdf(pdf_files)
 
 logging.debug(f"-------{sys.argv[0]}-------")
 logging.debug("Debug Info: ")
@@ -80,6 +113,15 @@ total_time = 0
 
 
 files_with_errors = {}
+
+
+## Create Working folders
+Path(unstamped_folder).mkdir(parents=True, exist_ok=True)
+Path(working_folder).mkdir(parents=True, exist_ok=True)
+Path(stamped_folder).mkdir(parents=True, exist_ok=True)
+
+
+
 
 for index, key in enumerate(pdf_files):
     file_start_time = time.time()
@@ -225,3 +267,6 @@ print("Total Time Taken by Python = ", py_report_time, py_report_uom)
 # dpprint(pdf_files)
 
 
+### Zipping the File
+output_file = "{output_folder}/{input_filename}---{script_start_time}"
+shutil.make_archive(output_file, 'zip', stamped_folder)

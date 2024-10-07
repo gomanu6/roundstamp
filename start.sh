@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+
 echo "Hello from Bash"
 
 # timedatectl set-timezone Asia/Kolkata
@@ -19,16 +20,17 @@ echo "Local Installed Python Version is: $(python3 --version)"
 # python3 /app/rs.py
 
 ## Convert to Unix Format if Required
-# dos2unix /app/*.sh
-# dos2unix /app/*.py
-# dos2unix /app/*.config
-# dos2unix /app/*/*.sh
-# dos2unix /app/*/*.config
-# dos2unix /app/*/*.py
+dos2unix /app/*.sh
+dos2unix /app/*.py
+dos2unix /app/*.config
+dos2unix /app/*/*.sh
+dos2unix /app/*/*.config
+dos2unix /app/*/*.py
 
 
 ## Make executable
-# chmod +x /app/*.sh
+chmod +x /app/*.sh
+chmod +x /app/*.py
 
 
 bash /app/docker_stamp.sh

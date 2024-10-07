@@ -18,74 +18,78 @@ script_run_time=$(date +%H-%M)
 
 
 unstamped_zipfile="${annexure_file}"
-base_folder="${data_folder}"
 
-working_stamps_folder="${base_folder}/${working_stamps_folder_name}"
-working_unstamped_folder="${base_folder}/${unstamped_folder_name}"
-working_folder="${base_folder}/${working_folder_name}"
-final_stamped_folder="${base_folder}/${stamped_folder_name}"
+base_folder="${wip_folder}"
+# working_stamps_folder="${base_folder}/${working_stamps_folder_name}"
+# working_unstamped_folder="${base_folder}/${unstamped_folder_name}"
+# working_folder="${base_folder}/${working_folder_name}"
+# final_stamped_folder="${base_folder}/${stamped_folder_name}"
 
 dst_folder="${destination_folder}"
 
-round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
+# round_stamp_file="${working_stamps_folder}/${round_stamp_file_name}"
 
 env_base="${env_base_path}"
 env_path="${env_base}/${python_env_name}"
 
-echo "Version 0.8c-docker"
+echo "Version 0.8d-docker"
 
+### Checking in the PY Script
 ## Checking Input File characteristics
-echo "**** Checking Input File ****"
-if [ -f "${unstamped_zipfile}" ]; then
-    o_user=$(stat -c %U "${unstamped_zipfile}")
-    o_group=$(stat -c %G "${unstamped_zipfile}")
-    zip_filename=$(basename "${unstamped_zipfile}")
-    lowercase_filename=${zip_filename%.*}
-    echo "    The Zip file is: ${unstamped_zipfile}"
-else
-    echo "${p} ERROR: File does not exist"
-    echo "${p} ERROR: exiting .. "
-    exit 1
-fi
+# echo "**** Checking Input File ****"
+# if [ -f "${unstamped_zipfile}" ]; then
+#     o_user=$(stat -c %U "${unstamped_zipfile}")
+#     o_group=$(stat -c %G "${unstamped_zipfile}")
+#     zip_filename=$(basename "${unstamped_zipfile}")
+#     lowercase_filename=${zip_filename%.*}
+#     echo "    The Zip file is: ${unstamped_zipfile}"
+# else
+#     echo "${p} ERROR: File does not exist"
+#     echo "${p} ERROR: exiting .. "
+#     exit 1
+# fi
 
+### NOT required if binding volume to /wip
 ## Creating base working folder
-echo
-echo "**** Creating Base Folder ****"
-if [ -d "${base_folder}" ]; then
-    echo "${p} Deleting Old Data Folder and making a new one"
-    rm -rf "${base_folder}"
-    dirs_create "${base_folder}"
-else
-    if mkdir -p "${base_folder}"; then
-        echo "${p} Created Working Folder --> ${base_folder}"
-    else
-        echo "${p} ERROR: Unable to create Working Folder..... exiting"
-        exit 2
-    fi
-fi
+# echo
+# echo "**** Creating Base Folder ****"
+# if [ -d "${base_folder}" ]; then
+#     echo "${p} Deleting Old Data Folder and making a new one"
+#     rm -rf "${base_folder}"
+#     dirs_create "${base_folder}"
+# else
+#     if mkdir -p "${base_folder}"; then
+#         echo "${p} Created Working Folder --> ${base_folder}"
+#     else
+#         echo "${p} ERROR: Unable to create Working Folder..... exiting"
+#         exit 2
+#     fi
+# fi
 
 
-log_file_name="${zip_filename}__${todays_date}__${script_run_time}.txt"
-log_file="${base_folder}/${log_file_name}"
+log_file_name="${lowercase_filename}__${todays_date}__${script_run_time}.txt"
+log_file="${dst_folder}/${log_file_name}"
 
 touch "${log_file}"
 
 
+### Creating in Stamp8
 ## Creating internal folder structure
-echo
-echo "**** Creating Internal Folder Structure ****"
-dirs_create "${working_stamps_folder}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
+# echo
+# echo "**** Creating Internal Folder Structure ****"
+# dirs_create "${wip_stamps_folder}" "${wip_unstamped_folder}" "${wip_folder}" "${wip_stamped_folder}"
+
+### Py script will read the file directly
+## Copying all Stamps 
+# echo
+# cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}/"
 
 
-## Copying all Stamps
-echo
-cp -v "${existing_stamps_folder}/${round_stamp_file_name}" "${working_stamps_folder}/"
-
-
+### Unzipping in the Python Script
 ## Unzipping Files
-echo
-echo "${p} Unzipping files"
-unzip -qo "${unstamped_zipfile}" -d "${working_unstamped_folder}"
+# echo
+# echo "${p} Unzipping files"
+# unzip -qo "${unstamped_zipfile}" -d "${working_unstamped_folder}"
 
 STARTTIME=$(date +%s)
 
@@ -102,7 +106,8 @@ pip install --upgrade "${python_modules}"
 
 echo
 
-python3 stamp8.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}" | tee -a "${log_file}"
+python3 stamp8.py | tee -a "${log_file}"
+# python3 stamp8.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}" | tee -a "${log_file}"
 # python3 stamp6.py "${round_stamp_file}" "${working_unstamped_folder}" "${working_folder}" "${final_stamped_folder}"
 
 # pip3 freeze > requirements.txt
@@ -147,12 +152,13 @@ echo
 
 
 ### Copy results
-echo "${p} Creating Zip ... "
-cd "${final_stamped_folder}"
-zip -rq "${dst_folder}/stamped_annexures-${todays_date}__${script_run_time}.zip" .
-cd ../..
-cp "${log_file}" "${dst_folder}/"
-echo "${p} Copied Zip file to output folder ... "
+### Zipping in the Py Script
+# echo "${p} Creating Zip ... "
+# cd "${final_stamped_folder}"
+# zip -rq "${dst_folder}/stamped_annexures-${todays_date}__${script_run_time}.zip" .
+# cd ../..
+# cp "${log_file}" "${dst_folder}/"
+# echo "${p} Copied Zip file to output folder ... "
 
 ### Not required for Docker
 # chown -R "${o_user}:${o_group}" "${dst_folder}"

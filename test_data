@@ -1,4 +1,3 @@
-annexure_file="/input/inputfiles/books.zip"
 destination_folder="/output"
 
 existing_stamps_folder="/input/stampfiles"
@@ -12,9 +11,3 @@ wip_stamps_folder="/wip/stamps"
 wip_unstamped_folder="/wip/unstamped"
 wip_folder="/wip/wip"
 wip_stamped_folder="/wip/stamped"
-
-
-python_packages="python3-venv python3-pip"
-env_base_path="/wip/pyenvs"
-python_env_name="dockstamp8env"
-python_modules="pymupdf"
